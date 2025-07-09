@@ -66,7 +66,7 @@ function cycleModel() {
 
 	<SoftShadows :size="50" :samples="10" />
 
-	<TresGroup :position="[0, 3.5, 0]">
+	<TresGroup :position="[3.5, 0, 0]">
 		<Levioso @click="cycleModel">
 			<TresGroup ref="canister">
 				<FilmCanister :model="model" />
@@ -74,7 +74,7 @@ function cycleModel() {
 		</Levioso>
 	</TresGroup>
 
-	<TresGroup :position="[0, -3.5, 0]">
+	<TresGroup :position="[-3.5, 0, 0]">
 		<Levioso>
 			<TresGroup ref="packaging">
 				<FilmPackaging
