@@ -37,12 +37,13 @@ function cycleModel() {
 </script>
 
 <template>
+	<Stats />
 	<TresMesh
 		receive-shadow
 		:position="[0, 0, -4]"
 		:rotation="[0, 0, 0]"
 	>
-		<TresPlaneGeometry :args="[40, 40, 10, 10]" />
+		<TresPlaneGeometry :args="[400, 400, 10, 10]" />
 		<TresMeshStandardMaterial
 			color="#ffffff"
 			:roughness="0.5"

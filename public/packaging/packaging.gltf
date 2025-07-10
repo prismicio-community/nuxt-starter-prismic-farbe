@@ -28,12 +28,15 @@
 		{
 			"doubleSided":true,
 			"name":"main",
+			"normalTexture":{
+				"index":0
+			},
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":0
+					"index":1
 				},
 				"metallicFactor":0,
-				"roughnessFactor":0.5
+				"roughnessFactor":0.4000000059604645
 			}
 		}
 	],
@@ -57,9 +60,18 @@
 		{
 			"sampler":0,
 			"source":0
+		},
+		{
+			"sampler":0,
+			"source":1
 		}
 	],
 	"images":[
+		{
+			"mimeType":"image/jpeg",
+			"name":"uv",
+			"uri":"uv.jpg"
+		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"color",

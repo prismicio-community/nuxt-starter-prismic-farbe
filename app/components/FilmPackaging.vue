@@ -10,7 +10,7 @@ defineProps<{
 			cast-shadow
 			model="/packaging/packaging.gltf"
 			:texture="{
-				map: `/textures/${model}-packaging.jpg`,
+				map: `/textures/${model}-packaging-min.jpg`,
 			}"
 			v-bind="$attrs"
 		/>
