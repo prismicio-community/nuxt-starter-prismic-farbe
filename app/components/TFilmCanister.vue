@@ -6,11 +6,11 @@ defineProps<{
 
 <template>
 	<Suspense>
-		<GltfModel
-			cast-shadow
-			model="/packaging/packaging.gltf"
+		<TModel
+			model="/canister/canister.gltf"
 			:texture="{
-				map: `/textures/${model}-packaging-min.jpg`,
+				map: `/textures/${model}-color-min.jpg`,
+				metalnessMap: `/textures/${model}-metallic-min.jpg`,
 			}"
 			v-bind="$attrs"
 		/>

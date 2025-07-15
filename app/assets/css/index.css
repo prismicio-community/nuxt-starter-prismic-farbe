@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+@theme {
+	--font-sans: "Inter", sans-serif;
+	--font-mono: "Geist Mono", monospace;
+	--font-mono--font-feature-settings: "ss09" on;
+	--color-green: #00e67b;
+}
+
+html {
+	background: #dcd8d3;
+}
+
+.cta {
+	@apply font-mono leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:bg-black focus-visible:text-white;
+}
+
+.heading-1 {
+	@apply font-bold text-[5vw] leading-none;
+}
+
+.heading-2 {
+	@apply font-bold text-[2.5vw] leading-none;
+}
+
+.paragraph {
+	@apply font-mono max-w-[40ch] hyphens-auto;
+}

@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 	compatibilityDate: "2025-05-15",
 	devtools: { enabled: true },
 	css: ["~/assets/css/index.css"],
-	modules: ["@tresjs/nuxt"],
+	modules: ["@tresjs/nuxt", "@nuxt/fonts"],
 	vite: {
 		plugins: [
 			tailwindcss(),
