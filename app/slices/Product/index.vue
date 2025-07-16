@@ -2,7 +2,7 @@
 import type { Content } from "@prismicio/client"
 import { gsap } from "gsap"
 
-const props = defineProps(getSliceComponentProps<Content.ProductSlice>());
+const props = defineProps(getSliceComponentProps<Content.ProductSlice>())
 
 const $this = shallowRef<HTMLElement | null>(null)
 const { $canister, $packaging } = useScene()
@@ -45,10 +45,10 @@ useGSAP($this, ($this) => {
 
 <template>
 	<section
-		:data-slice-type="slice.slice_type"
-		:data-slice-variation="slice.variation"
 		:id="product"
 		ref="$this"
+		:data-slice-type="slice.slice_type"
+		:data-slice-variation="slice.variation"
 		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
 	>
 		<h2>Farbe {{ product }}</h2>
