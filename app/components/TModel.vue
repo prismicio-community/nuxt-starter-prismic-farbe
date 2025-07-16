@@ -1,44 +1,52 @@
-<script lang="ts" setup async>
-import { MeshStandardMaterial, SRGBColorSpace } from "three"
+<script lang="ts" setup>
+import { Mesh, MeshStandardMaterial, SRGBColorSpace } from "three"
 
 const props = defineProps<{
 	model: string
-	texture: {
-		map: string
-		metalnessMap?: string
-	}
+	textures: [map: string, metalnessMap?: string]
 }>()
 
-const { scene: model, materials } = await useGLTF(props.model, { draco: true })
+const { state, materials } = useGLTF(props.model, { draco: true })
+watch(state, (state) => {
+	state?.scene.traverse((child) => {
+		if (child instanceof Mesh) {
+			child.castShadow = true
+		}
+	})
+})
 
-watch(() => props.texture, async () => {
-	const texture = await useTexture(props.texture)
-
-	Object.values(texture).forEach((value) => {
+const texturePaths = computed(() => props.textures.filter(Boolean) as string[])
+const { textures } = useTextures(texturePaths)
+watch(textures, (textures) => {
+	textures.forEach((value) => {
 		if (value) {
 			value.flipY = false
 			value.colorSpace = SRGBColorSpace
 			value.anisotropy = 16
 		}
 	})
+})
 
-	if (materials.main instanceof MeshStandardMaterial) {
-		materials.main.map = texture.map
-		materials.main.metalnessMap = texture.metalnessMap
-		materials.main.needsUpdate = true
+watchEffect(() => {
+	if (
+		!(materials.value.main instanceof MeshStandardMaterial) ||
+		!textures.value[0]
+	) {
+		return
 	}
-}, { immediate: true })
 
-model.traverse((child: TresObject) => {
-	if (child.isMesh) {
-		child.castShadow = true
+	materials.value.main.map = textures.value[0]
+	if (textures.value[1]) {
+		materials.value.main.metalnessMap = textures.value[1]
 	}
+	materials.value.main.needsUpdate = true
 })
 </script>
 
 <template>
 	<primitive
-		:object="model"
+		v-if="state?.scene"
+		:object="state.scene"
 		:scale="100"
 		v-bind="$attrs"
 	/>

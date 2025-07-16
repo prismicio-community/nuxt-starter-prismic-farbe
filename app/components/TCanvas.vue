@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ACESFilmicToneMapping, PCFSoftShadowMap, SRGBColorSpace } from "three"
+
 const mounted = ref(false)
 
 onMounted(() => {
@@ -13,7 +15,11 @@ onMounted(() => {
 	>
 		<TresCanvas
 			window-size
-			preset="realistic"
+			:shadows="true"
+			:output-color-space="SRGBColorSpace"
+			:tone-mapping="ACESFilmicToneMapping"
+			:tone-mapping-exposure="3"
+			:shadow-map-type="PCFSoftShadowMap"
 		>
 			<Stats v-if="false" />
 			<OrbitControls v-if="false" />

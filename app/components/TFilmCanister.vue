@@ -5,14 +5,9 @@ defineProps<{
 </script>
 
 <template>
-	<Suspense>
-		<TModel
-			model="/canister/canister.gltf"
-			:texture="{
-				map: `/textures/${model}-color-min.jpg`,
-				metalnessMap: `/textures/${model}-metallic-min.jpg`,
-			}"
-			v-bind="$attrs"
-		/>
-	</Suspense>
+	<TModel
+		model="/canister/canister.gltf"
+		:textures="[`/textures/${model}-color-min.jpg`, `/textures/${model}-metallic-min.jpg`]"
+		v-bind="$attrs"
+	/>
 </template>
