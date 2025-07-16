@@ -1,4 +1,5 @@
 import tailwindcss from "@tailwindcss/vite"
+import { repositoryName } from "./slicemachine.config.json"
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -19,10 +20,21 @@ export default defineNuxtConfig({
 		},
 	},
 	css: ["~/assets/css/index.css"],
-	modules: ["@tresjs/nuxt", "@nuxt/fonts"],
+	modules: ["@tresjs/nuxt", "@nuxt/fonts", "@nuxtjs/prismic"],
+
 	vite: {
 		plugins: [
 			tailwindcss(),
 		],
+	},
+
+	prismic: {
+		endpoint: repositoryName,
+		clientConfig: {
+			routes: [
+				{ uid: "home", type: "page", path: "/" },
+				{ type: "page", path: "/:uid" },
+			],
+		},
 	},
 })

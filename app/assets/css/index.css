@@ -13,16 +13,20 @@ html {
 
 .cta {
 	@apply font-mono leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:bg-black focus-visible:text-white;
+
+	&.primary {
+		@apply bg-green;
+	}
 }
 
-.heading-1 {
+.rich-text > h1, .heading-1 {
 	@apply font-bold text-[5vw] leading-none;
 }
 
-.heading-2 {
+.rich-text > h2, .heading-2 {
 	@apply font-bold text-[2.5vw] leading-none;
 }
 
-.paragraph {
+.rich-text > p, .paragraph {
 	@apply font-mono max-w-[40ch] hyphens-auto;
 }

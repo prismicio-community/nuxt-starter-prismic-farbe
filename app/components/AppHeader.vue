@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-const links = ["100", "200", "400", "800", "Community"]
+import type { Content } from "@prismicio/client"
+
+defineProps<{
+	settings?: Content.SettingsDocument
+}>()
 </script>
 
 <template>
@@ -11,10 +15,8 @@ const links = ["100", "200", "400", "800", "Community"]
 						<BrandSignature class="text-lg" />
 					</NuxtLink>
 				</li>
-				<li v-for="link in links" :key="link">
-					<NuxtLink :to="`#${link}`" class="cta">
-						{{ link }}
-					</NuxtLink>
+				<li v-for="link in settings?.data.navigation" :key="link.key">
+					<PrismicLink :field="link" class="cta" />
 				</li>
 				<li class="ml-auto pr-4">
 					<NuxtLink to="#cart" class="cta">

@@ -3,6 +3,7 @@
 import type { Group } from "three"
 
 const $canister = shallowRef<Group | null>(null)
+const $canisterInternal = shallowRef<Group | null>(null)
 const $packaging = shallowRef<Group | null>(null)
 
 const scene = useScene()
@@ -17,8 +18,8 @@ watch($packaging, (value) => {
 const { onBeforeRender } = useLoop()
 
 onBeforeRender(({ elapsed }) => {
-	if ($canister.value) {
-		$canister.value.rotation.y = Math.PI / 4 - Math.sin(elapsed * 0.25) * Math.PI / 2
+	if ($canisterInternal.value) {
+		$canisterInternal.value.rotation.y = Math.PI / 4 - Math.sin(elapsed * 0.25) * Math.PI / 2
 	}
 })
 </script>
@@ -28,10 +29,12 @@ onBeforeRender(({ elapsed }) => {
 		<TresGroup :position="[1.5, 2.5, 0]">
 			<Levioso>
 				<TresGroup ref="$canister">
-					<TFilmCanister
-						model="800"
-						:rotation="[0, 0, Math.PI / 8]"
-					/>
+					<TresGroup ref="$canisterInternal">
+						<TFilmCanister
+							model="800"
+							:rotation="[0, 0, Math.PI / 8]"
+						/>
+					</TresGroup>
 				</TresGroup>
 			</Levioso>
 		</TresGroup>

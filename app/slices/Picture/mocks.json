@@ -1,0 +1,66 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"picture": {
+				"__TYPE__": "ImageContent",
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1628945301291-a19611e106a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw4fHxmaWxtJTIwcGhvdG9ncmFwaHl8ZW58MHx8fHwxNzUyNTczMTM3fDA&ixlib=rb-4.1.0&q=85",
+				"alt": "pink flower field near body of water during daytime",
+				"origin": {
+					"id": "StQJj4NAYg0",
+					"url": "https://images.unsplash.com/photo-1628945301291-a19611e106a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw4fHxmaWxtJTIwcGhvdG9ncmFwaHl8ZW58MHx8fHwxNzUyNTczMTM3fDA&ixlib=rb-4.1.0&q=85",
+					"width": 3130,
+					"height": 2075
+				},
+				"width": 3130,
+				"height": 2075,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"thumbnails": {}
+			},
+			"caption": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Flower field by @lihbr.png. 1/250s, f/2.8, 50mm, with Farbe 400.",
+							"spans": [
+								{
+									"type": "hyperlink",
+									"start": 16,
+									"end": 26,
+									"data": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://www.instagram.com/lihbr.png",
+										"target": "_blank"
+									}
+								},
+								{
+									"type": "hyperlink",
+									"start": 54,
+									"end": 63,
+									"data": {
+										"__TYPE__": "ExternalLink",
+										"url": "#400",
+										"target": "_self"
+									}
+								}
+							]
+						},
+						"direction": "ltr"
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
