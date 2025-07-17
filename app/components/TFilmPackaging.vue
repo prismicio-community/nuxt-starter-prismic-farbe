@@ -8,7 +8,7 @@ defineProps<{
 	<TModel
 		cast-shadow
 		model="/packaging/packaging.gltf"
-		:textures="[`/textures/${model}-packaging-min.jpg`]"
+		:map="`/textures/${model}-packaging-min.jpg`"
 		v-bind="$attrs"
 	/>
 </template>

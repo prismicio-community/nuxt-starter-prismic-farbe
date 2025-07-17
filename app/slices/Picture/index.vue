@@ -1,22 +1,12 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client"
 
-const props = defineProps(getSliceComponentProps<Content.PictureSlice>())
-
-const $this = shallowRef<HTMLElement | null>(null)
-const { $canister, $packaging } = useScene()
-
-useGSAP($this, ($this) => {
-	console.log("picture", $this.offsetTop, props.index)
-	positionTop($this, [$canister, $packaging])
-})
+defineProps(getSliceComponentProps<Content.PictureSlice>())
 </script>
 
 <template>
 	<figure
-		ref="$this"
-		:data-slice-type="slice.slice_type"
-		:data-slice-variation="slice.variation"
+		:data-slice="`${slice.slice_type}-${index}`"
 		class="relative z-20"
 	>
 		<PrismicImage :field="slice.primary.picture" class="w-full" />

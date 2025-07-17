@@ -17,9 +17,13 @@ useSeoMeta({
 </script>
 
 <template>
-	<SliceZone
-		wrapper="main"
-		:slices="page?.data.slices ?? []"
-		:components="components"
-	/>
+	<main>
+		<SliceZone
+			:slices="page?.data.slices ?? []"
+			:components="components"
+		/>
+		<TCanvas>
+			<TScene :slices="page?.data.slices ?? []" />
+		</TCanvas>
+	</main>
 </template>

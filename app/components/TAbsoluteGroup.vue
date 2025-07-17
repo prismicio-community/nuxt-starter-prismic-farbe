@@ -10,7 +10,9 @@ const props = defineProps<{
 const { camera, sizes } = useTresContext()
 
 const position = computed<[number, number, number]>(() => {
-	const fov = camera.value instanceof PerspectiveCamera ? camera.value.fov : 50
+	const fov = camera.activeCamera.value instanceof PerspectiveCamera
+		? camera.activeCamera.value.fov
+		: 50
 
 	const height = 2 * Math.tan(fov * Math.PI / 180 / 2) * props.distance
 	const width = height * sizes.aspectRatio.value

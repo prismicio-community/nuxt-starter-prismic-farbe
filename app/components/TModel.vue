@@ -3,7 +3,8 @@ import { Mesh, MeshStandardMaterial, SRGBColorSpace } from "three"
 
 const props = defineProps<{
 	model: string
-	textures: [map: string, metalnessMap?: string]
+	map: string
+	metalnessMap?: string
 }>()
 
 const { state, materials } = useGLTF(props.model, { draco: true })
@@ -15,32 +16,36 @@ watch(state, (state) => {
 	})
 })
 
-const texturePaths = computed(() => props.textures.filter(Boolean) as string[])
-const { textures } = useTextures(texturePaths)
-watch(textures, (textures) => {
-	textures.forEach((value) => {
-		if (value) {
-			value.flipY = false
-			value.colorSpace = SRGBColorSpace
-			value.anisotropy = 16
+const { state: map, isLoading: isMapLoading } = useTexture(computed(() => props.map))
+const { state: metalnessMap, isLoading: isMetalnessMapLoading } = useTexture(computed(() => props.metalnessMap ?? ""))
+
+watch(
+	[materials, map, isMapLoading, metalnessMap, isMetalnessMapLoading],
+	([materials, map, isMapLoading, metalnessMap, isMetalnessMapLoading]) => {
+		if (
+			!(materials.main instanceof MeshStandardMaterial)
+			|| !map
+			|| isMapLoading
+			|| isMetalnessMapLoading
+		) {
+			return
 		}
-	})
-})
 
-watchEffect(() => {
-	if (
-		!(materials.value.main instanceof MeshStandardMaterial) ||
-		!textures.value[0]
-	) {
-		return
-	}
+		// Fix textures
+		[map, metalnessMap].forEach((texture) => {
+			if (texture) {
+				texture.flipY = false
+				texture.colorSpace = SRGBColorSpace
+				texture.anisotropy = 16
+			}
+		})
 
-	materials.value.main.map = textures.value[0]
-	if (textures.value[1]) {
-		materials.value.main.metalnessMap = textures.value[1]
+		// Apply textures
+		materials.main.map = map
+		materials.main.metalnessMap = metalnessMap
+		materials.main.needsUpdate = true
 	}
-	materials.value.main.needsUpdate = true
-})
+)
 </script>
 
 <template>

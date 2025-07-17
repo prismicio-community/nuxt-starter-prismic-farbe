@@ -7,7 +7,8 @@ defineProps<{
 <template>
 	<TModel
 		model="/canister/canister.gltf"
-		:textures="[`/textures/${model}-color-min.jpg`, `/textures/${model}-metallic-min.jpg`]"
+		:map="`/textures/${model}-color-min.jpg`"
+		:metalnessMap="`/textures/${model}-metallic-min.jpg`"
 		v-bind="$attrs"
 	/>
 </template>
