@@ -59,19 +59,6 @@ useGSAP(() => {
 					break
 
 				case "product":
-					// eslint-disable-next-line no-case-declarations
-					const scrollTrigger = {
-						trigger: selector,
-						start: "top+=40% bottom",
-						end: "bottom bottom",
-						scrub: true,
-						invalidateOnRefresh: true,
-						id: `center-${index}`,
-						// markers: {
-						// 	indent: index * 175,
-						// },
-					}
-
 					gsap.to([$canisterPosition, $packagingPosition], {
 						y: 0,
 						stagger: 0.05,
@@ -91,7 +78,7 @@ useGSAP(() => {
 						ease: "power2.inOut",
 						repeatRefresh: true,
 						onUpdate() {
-							if (this.progress() > .4 && this.progress() < .6) {
+							if (this.progress() > 0.4 && this.progress() < 0.6) {
 								const models = ["100", "200", "400", "800"] as const
 								const value = models[index % models.length]!
 								if (value !== model.value) {
@@ -113,7 +100,7 @@ useGSAP(() => {
 										model.value = value
 									}
 								}
-							}
+							},
 						},
 					})
 					break

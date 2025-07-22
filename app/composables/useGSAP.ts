@@ -1,5 +1,4 @@
-import type { Group } from "three"
-import type { ShallowRef, WatchSource } from "vue"
+import type { WatchSource } from "vue"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
