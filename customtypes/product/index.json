@@ -1,0 +1,17 @@
+{
+  "format": "custom",
+  "id": "product",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      }
+    }
+  },
+  "label": "Product",
+  "repeatable": true,
+  "status": true
+}
