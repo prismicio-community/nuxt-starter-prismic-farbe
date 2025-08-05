@@ -15,6 +15,23 @@ useGSAP(() => {
 
 	slideInChildren($this.value)
 })
+
+const quantity = ref(1)
+function setQuantity(value: number) {
+	quantity.value = Math.max(1, value)
+}
+
+function onSubmit(event: Event) {
+	event.preventDefault()
+
+	const formData = new FormData(event.target as HTMLFormElement)
+	const sku = formData.get("sku")
+	const quantity = Number.parseInt(formData.get("quantity") as string) || 1
+
+	console.log({ sku, quantity })
+
+	setQuantity(1)
+}
 </script>
 
 <template>
@@ -67,11 +84,24 @@ useGSAP(() => {
 				</div>
 			</dl>
 		</section>
-		<form action="#" method="GET" class="mt-16">
-			<label for="quantity">Quantity:</label>
-			<input id="quantity" type="number" name="quantity" value="1" min="1">
-
-			<button class="cta primary" type="submit">
+		<form
+			action="/api/cart"
+			method="POST"
+			class="mt-16 border-2 border-black max-w-[calc(40ch+2rem)] -ml-4 flex items-center"
+			@submit="onSubmit"
+		>
+			<button class="cta flex-1" type="button" @click="setQuantity(quantity - 1)">
+				-
+			</button>
+			<div class="flex-1 text-center" aria-live="polite">
+				{{ quantity }}
+			</div>
+			<button class="cta flex-1" type="button" @click="setQuantity(quantity + 1)">
+				+
+			</button>
+			<input type="hidden" name="sku" :value="product">
+			<input type="hidden" name="quantity" :value="quantity">
+			<button class="cta inverted" type="submit">
 				Add to cart
 			</button>
 		</form>

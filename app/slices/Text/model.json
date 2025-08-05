@@ -41,7 +41,8 @@
             "repeat": true,
             "variants": [
               "Transparent",
-              "Primary"
+              "Primary",
+              "Outlined"
             ]
           }
         },

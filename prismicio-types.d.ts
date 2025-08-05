@@ -368,7 +368,7 @@ export interface TextSliceDefaultPrimary {
       string,
       unknown,
       prismic.FieldState,
-      "Transparent" | "Primary"
+      "Transparent" | "Primary" | "Outlined"
     >
   >;
 

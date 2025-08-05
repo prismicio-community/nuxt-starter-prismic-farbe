@@ -5,17 +5,26 @@
 	--font-mono: "Geist Mono", monospace;
 	--font-mono--font-feature-settings: "ss09" on;
 	--color-green: #00e67b;
+	--color-white: #dcd8d3;
 }
 
 html {
-	background: #dcd8d3;
+	@apply bg-white
 }
 
 .cta {
-	@apply font-mono leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:!bg-black focus-visible:text-white;
+	@apply font-mono leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:bg-black focus-visible:text-white;
 
 	&.primary {
-		@apply bg-green;
+		@apply bg-green focus-visible:bg-black;
+	}
+
+	&.inverted {
+		@apply bg-black text-white focus-visible:bg-transparent focus-visible:text-black;
+	}
+
+	&.outlined {
+		@apply border-2 border-black;
 	}
 }
 

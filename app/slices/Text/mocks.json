@@ -21,12 +21,12 @@
 				"type": "Link",
 				"value": [
 					{
-						"key": "9e3caae4-8a91-4b85-9d95-d74f12a1e214",
 						"__TYPE__": "LinkContent",
+						"key": "b783168e-4ed1-4a8d-94dd-a1239ecf550f",
 						"value": {
 							"__TYPE__": "ExternalLink",
-							"url": "https://instagram.com/farbe.film",
-							"text": "Join them in their journey ->",
+							"url": "http://twitter.com",
+							"text": "join",
 							"variant": "Transparent"
 						}
 					}
@@ -113,8 +113,8 @@
 				]
 			},
 			"product": {
-				"__TYPE__": "LinkContent",
 				"key": "28d4da23-e227-4d50-96d2-2291a557c6d6",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "DocumentLink",
 					"id": "mock_document_id"
