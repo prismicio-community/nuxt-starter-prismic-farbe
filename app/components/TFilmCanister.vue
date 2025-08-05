@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-defineProps<{
-	model: "100" | "200" | "400" | "800"
-}>()
+defineProps<{ model: string }>()
 </script>
 
 <template>
 	<TModel
 		model="/canister/canister.gltf"
 		:map="`/textures/${model}-color-min.jpg`"
-		:metalnessMap="`/textures/${model}-metallic-min.jpg`"
+		:metalness-map="`/textures/${model}-metallic-min.jpg`"
 		v-bind="$attrs"
 	/>
 </template>

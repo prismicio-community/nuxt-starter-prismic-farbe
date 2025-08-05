@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-defineProps<{
-	model: "100" | "200" | "400" | "800"
-}>()
+defineProps<{ model: string }>()
 </script>
 
 <template>

@@ -4,7 +4,6 @@
 		"variation": "default",
 		"primary": {
 			"picture": {
-				"__TYPE__": "ImageContent",
 				"provider": "imgix",
 				"url": "https://images.unsplash.com/photo-1628945301291-a19611e106a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw4fHxmaWxtJTIwcGhvdG9ncmFwaHl8ZW58MHx8fHwxNzUyNTczMTM3fDA&ixlib=rb-4.1.0&q=85",
 				"alt": "pink flower field near body of water during daytime",
@@ -24,6 +23,8 @@
 						"y": 0
 					}
 				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			},
 			"caption": {
@@ -59,6 +60,14 @@
 						"direction": "ltr"
 					}
 				]
+			},
+			"product": {
+				"__TYPE__": "LinkContent",
+				"key": "20d2408f-2c19-4805-a6bd-fb39f1571e95",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []

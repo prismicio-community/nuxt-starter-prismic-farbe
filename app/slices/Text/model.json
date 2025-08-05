@@ -1,96 +1,118 @@
 {
-	"id": "text",
-	"type": "SharedSlice",
-	"name": "Text",
-	"description": "Text",
-	"variations": [
-		{
-			"id": "default",
-			"name": "Default",
-			"docURL": "...",
-			"version": "initial",
-			"description": "Default",
-			"imageUrl": "",
-			"primary": {
-				"title": {
-					"type": "StructuredText",
-					"config": {
-						"label": "Title",
-						"placeholder": "",
-						"allowTargetBlank": false,
-						"single": "heading1,heading2"
-					}
-				},
-				"text": {
-					"type": "StructuredText",
-					"config": {
-						"label": "Text",
-						"placeholder": "",
-						"allowTargetBlank": true,
-						"multi": "paragraph,strong,em,hyperlink"
-					}
-				},
-				"ctas": {
-					"type": "Link",
-					"config": {
-						"label": "CTAs",
-						"placeholder": "",
-						"select": null,
-						"allowTargetBlank": true,
-						"allowText": true,
-						"repeat": true,
-						"variants": [
-							"Transparent",
-							"Primary"
-						]
-					}
-				}
-			},
-			"items": {}
-		},
-		{
-			"id": "fullscreen",
-			"name": "Fullscreen (hero)",
-			"docURL": "...",
-			"version": "initial",
-			"description": "Default",
-			"imageUrl": "",
-			"primary": {
-				"title": {
-					"type": "StructuredText",
-					"config": {
-						"label": "Title",
-						"placeholder": "",
-						"allowTargetBlank": false,
-						"single": "heading1,heading2"
-					}
-				},
-				"text": {
-					"type": "StructuredText",
-					"config": {
-						"label": "Text",
-						"placeholder": "",
-						"allowTargetBlank": true,
-						"multi": "paragraph,strong,em,hyperlink"
-					}
-				},
-				"ctas": {
-					"type": "Link",
-					"config": {
-						"label": "CTAs",
-						"placeholder": "",
-						"select": null,
-						"allowTargetBlank": true,
-						"allowText": true,
-						"repeat": true,
-						"variants": [
-							"Transparent",
-							"Primary"
-						]
-					}
-				}
-			},
-			"items": {}
-		}
-	]
+  "id": "text",
+  "type": "SharedSlice",
+  "name": "Text",
+  "description": "Text",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading1,heading2"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "ctas": {
+          "type": "Link",
+          "config": {
+            "label": "CTAs",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true,
+            "variants": [
+              "Transparent",
+              "Primary"
+            ]
+          }
+        },
+        "product": {
+          "type": "Link",
+          "config": {
+            "label": "Product",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "product"
+            ]
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "fullscreen",
+      "name": "Fullscreen (hero)",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading1,heading2"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "ctas": {
+          "type": "Link",
+          "config": {
+            "label": "CTAs",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true,
+            "variants": [
+              "Transparent",
+              "Primary"
+            ]
+          }
+        },
+        "product": {
+          "type": "Link",
+          "config": {
+            "label": "Product",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "product"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
 }

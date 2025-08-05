@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 /* eslint-disable vue/attribute-hyphenation */
 import type { Content } from "@prismicio/client"
-
 import type { Group } from "three"
+
+import type { Tween } from "three/examples/jsm/libs/tween.module.js"
+import { isFilled } from "@prismicio/client"
 import { gsap } from "gsap"
 
 const props = defineProps<{
 	slices: Content.PageDocumentDataSlicesSlice[]
 }>()
 
-const model = ref<"100" | "800" | "200" | "400">("800")
+const model = ref<string>("800")
 
 const $canister = shallowRef<Group | null>(null)
 const $canisterInternal = shallowRef<Group | null>(null)
@@ -37,6 +39,30 @@ useGSAP(() => {
 	function animateScroll() {
 		props.slices.forEach((slice, index) => {
 			const selector = `[data-slice="${slice.slice_type}-${index}"]`
+
+			const product = isFilled.contentRelationship(slice.primary.product) && slice.primary.product.uid
+				? slice.primary.product.uid
+				: "800"
+
+			function onUpdate(this: gsap.TweenVars) {
+				if (
+					this.progress() > 0.4 &&
+					this.progress() < 0.6 &&
+					product !== model.value
+				) {
+					model.value = product
+				}
+			}
+
+			function onRefresh(self: ScrollTrigger) {
+				if (
+					self.isActive &&
+					product !== model.value
+				) {
+					model.value = product
+				}
+			}
+
 			switch (slice.slice_type) {
 				case "text":
 					gsap.to([$canisterPosition, $packagingPosition], {
@@ -44,16 +70,14 @@ useGSAP(() => {
 						stagger: 0.05,
 						ease: "power2.inOut",
 						repeatRefresh: true,
+						onUpdate,
 						scrollTrigger: {
 							trigger: selector,
 							start: "top+=40% bottom",
 							end: "bottom bottom",
 							scrub: true,
 							invalidateOnRefresh: true,
-							id: `center-${index}`,
-							// markers: {
-							// 	indent: index * 175,
-							// },
+							onRefresh,
 						},
 					})
 					break
@@ -73,34 +97,20 @@ useGSAP(() => {
 						},
 					})
 					gsap.to([$canisterRotation, $packagingRotation], {
-						y: Math.PI * 2,
+						y: `+=${Math.PI * 2}`,
 						stagger: 0.05,
+						// duration: 1.2,
 						ease: "power2.inOut",
 						repeatRefresh: true,
-						onUpdate() {
-							if (this.progress() > 0.4 && this.progress() < 0.6) {
-								const models = ["100", "200", "400", "800"] as const
-								const value = models[index % models.length]!
-								if (value !== model.value) {
-									model.value = value
-								}
-							}
-						},
+						onUpdate,
 						scrollTrigger: {
 							trigger: selector,
-							invalidateOnRefresh: true,
 							start: "top+=10% center",
 							end: "bottom-=10% center",
-							toggleActions: "play reset play reset",
-							onRefresh(self) {
-								if (self.isActive) {
-									const models = ["100", "200", "400", "800"] as const
-									const value = models[index % models.length]!
-									if (value !== model.value) {
-										model.value = value
-									}
-								}
-							},
+							// toggleActions: "play reset play reset",
+							scrub: 0.6,
+							invalidateOnRefresh: true,
+							onRefresh,
 						},
 					})
 					break
@@ -111,12 +121,14 @@ useGSAP(() => {
 						stagger: 0.05,
 						ease: "power2.inOut",
 						repeatRefresh: true,
+						onUpdate,
 						scrollTrigger: {
 							trigger: selector,
 							start: "top-=20% bottom",
 							end: "bottom bottom",
 							scrub: true,
 							invalidateOnRefresh: true,
+							onRefresh,
 						},
 					})
 					break

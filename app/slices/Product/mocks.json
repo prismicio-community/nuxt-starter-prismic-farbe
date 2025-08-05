@@ -2,7 +2,16 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
-		"primary": {},
+		"primary": {
+			"product": {
+				"__TYPE__": "LinkContent",
+				"key": "1da321af-29f3-4b0b-9c2b-c5d67e7f3c72",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			}
+		},
 		"items": []
 	}
 ]

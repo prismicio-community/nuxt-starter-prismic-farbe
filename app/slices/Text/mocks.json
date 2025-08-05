@@ -1,6 +1,63 @@
 [
 	{
 		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "From around the world, photographs use Farbe to capture unique slice of life.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"ctas": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "9e3caae4-8a91-4b85-9d95-d74f12a1e214",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "https://instagram.com/farbe.film",
+							"text": "Join them in their journey ->",
+							"variant": "Transparent"
+						}
+					}
+				]
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Shots from the\nFarbe community",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"product": {
+				"key": "5c3f63d2-7d2b-4299-91a0-e422728ca923",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
 		"variation": "fullscreen",
 		"primary": {
 			"title": {
@@ -54,55 +111,14 @@
 						}
 					}
 				]
-			}
-		},
-		"items": []
-	},
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"text": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "From around the world, photographs use Farbe to capture unique slice of life.",
-							"spans": []
-						},
-						"direction": "ltr"
-					}
-				]
 			},
-			"ctas": {
-				"__TYPE__": "RepeatableContent",
-				"type": "Link",
-				"value": [
-					{
-						"key": "9e3caae4-8a91-4b85-9d95-d74f12a1e214",
-						"__TYPE__": "LinkContent",
-						"value": {
-							"__TYPE__": "ExternalLink",
-							"url": "https://instagram.com/farbe.film",
-							"text": "Join them in their journey ->",
-							"variant": "Transparent"
-						}
-					}
-				]
-			},
-			"title": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "heading2",
-						"content": {
-							"text": "Shots from the\nFarbe community",
-							"spans": []
-						},
-						"direction": "ltr"
-					}
-				]
+			"product": {
+				"__TYPE__": "LinkContent",
+				"key": "28d4da23-e227-4d50-96d2-2291a557c6d6",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []

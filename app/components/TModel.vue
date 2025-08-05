@@ -23,10 +23,10 @@ watch(
 	[materials, map, isMapLoading, metalnessMap, isMetalnessMapLoading],
 	([materials, map, isMapLoading, metalnessMap, isMetalnessMapLoading]) => {
 		if (
-			!(materials.main instanceof MeshStandardMaterial)
-			|| !map
-			|| isMapLoading
-			|| isMetalnessMapLoading
+			!(materials.main instanceof MeshStandardMaterial) ||
+			!map ||
+			isMapLoading ||
+			isMetalnessMapLoading
 		) {
 			return
 		}
@@ -44,7 +44,7 @@ watch(
 		materials.main.map = map
 		materials.main.metalnessMap = metalnessMap
 		materials.main.needsUpdate = true
-	}
+	},
 )
 </script>
 

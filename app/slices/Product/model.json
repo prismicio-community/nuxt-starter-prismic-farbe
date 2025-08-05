@@ -1,16 +1,30 @@
 {
-	"id": "product",
-	"type": "SharedSlice",
-	"name": "Product",
-	"description": "Product",
-	"variations": [
-		{
-			"id": "default",
-			"name": "Default",
-			"docURL": "...",
-			"version": "initial",
-			"description": "Default",
-			"imageUrl": ""
-		}
-	]
+  "id": "product",
+  "type": "SharedSlice",
+  "name": "Product",
+  "description": "Product",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "product": {
+          "type": "Link",
+          "config": {
+            "label": "Product",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "product"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
 }
