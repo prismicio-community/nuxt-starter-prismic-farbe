@@ -19,7 +19,15 @@
             "select": "document",
             "repeat": false,
             "customtypes": [
-              "product"
+              {
+                "id": "product",
+                "fields": [
+                  "stripe_id",
+                  "name",
+                  "description",
+                  "characteristics"
+                ]
+              }
             ]
           }
         }

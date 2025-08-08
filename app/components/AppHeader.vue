@@ -4,12 +4,14 @@ import type { Content } from "@prismicio/client"
 defineProps<{
 	settings?: Content.SettingsDocument
 }>()
+
+const { totalItems } = useCart()
 </script>
 
 <template>
 	<header class="backdrop-blur">
 		<nav>
-			<ul class="flex justify-center">
+			<ul class="flex items-center">
 				<li class="w-3/5 pl-4 flex">
 					<NuxtLink to="/" class="cta py-px">
 						<BrandSignature class="text-lg" />
@@ -19,8 +21,10 @@ defineProps<{
 					<PrismicLink :field="link" class="cta" />
 				</li>
 				<li class="ml-auto pr-4">
-					<NuxtLink to="#cart" class="cta">
-						Cart (0)
+					<NuxtLink to="/#cart" class="cta">
+						<ClientOnly>
+							Cart ({{ totalItems }})
+						</ClientOnly>
 					</NuxtLink>
 				</li>
 			</ul>

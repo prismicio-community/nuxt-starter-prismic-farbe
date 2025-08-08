@@ -27,16 +27,18 @@ export function useGSAP(
 }
 
 export function slideInChildren($this: HTMLElement): void {
-	gsap.from($this.children, {
-		opacity: 0,
-		y: 50,
-		delay: 0.3,
-		duration: 1,
-		ease: "power2.out",
-		stagger: 0.2,
-		scrollTrigger: {
-			trigger: $this,
-			start: "top bottom-=40%",
-		},
+	nextTick(() => {
+		gsap.from($this.children, {
+			opacity: 0,
+			y: 50,
+			delay: 0.3,
+			duration: 1,
+			ease: "power2.out",
+			stagger: 0.2,
+			scrollTrigger: {
+				trigger: $this,
+				start: "top bottom-=40%",
+			},
+		})
 	})
 }

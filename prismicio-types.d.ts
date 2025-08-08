@@ -69,7 +69,11 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type PageDocumentDataSlicesSlice = ProductSlice | TextSlice | PictureSlice;
+type PageDocumentDataSlicesSlice =
+  | CartSlice
+  | ProductSlice
+  | TextSlice
+  | PictureSlice;
 
 /**
  * Content for Page documents
@@ -130,7 +134,54 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-interface ProductDocumentData {}
+/**
+ * Content for Product documents
+ */
+interface ProductDocumentData {
+  /**
+   * Stripe ID field in *Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product.stripe_id
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  stripe_id: prismic.KeyTextField;
+
+  /**
+   * Name field in *Product*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  name: prismic.RichTextField;
+
+  /**
+   * Description field in *Product*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Characteristics field in *Product*
+   *
+   * - **Field Type**: Table
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product.characteristics
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/table
+   */
+  characteristics: prismic.TableField;
+}
 
 /**
  * Product document from Prismic
@@ -221,6 +272,68 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Primary content in *Cart → Default → Primary*
+ */
+export interface CartSliceDefaultPrimary {
+  /**
+   * Title field in *Cart → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cart.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Text field in *Cart → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cart.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Empty Text field in *Cart → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cart.default.primary.empty_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  empty_text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Cart Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CartSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CartSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Cart*
+ */
+type CartSliceVariation = CartSliceDefault;
+
+/**
+ * Cart Shared Slice
+ *
+ * - **API ID**: `cart`
+ * - **Description**: Cart
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CartSlice = prismic.SharedSlice<"cart", CartSliceVariation>;
+
+/**
  * Primary content in *Picture → Default → Primary*
  */
 export interface PictureSliceDefaultPrimary {
@@ -297,7 +410,14 @@ export interface ProductSliceDefaultPrimary {
    * - **API ID Path**: product.default.primary.product
    * - **Documentation**: https://prismic.io/docs/fields/content-relationship
    */
-  product: prismic.ContentRelationshipField<"product">;
+  product: ContentRelationshipFieldWithData<
+    [
+      {
+        id: "product";
+        fields: ["stripe_id", "name", "description", "characteristics"];
+      },
+    ]
+  >;
 }
 
 /**
@@ -505,6 +625,10 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
+      CartSlice,
+      CartSliceDefaultPrimary,
+      CartSliceVariation,
+      CartSliceDefault,
       PictureSlice,
       PictureSliceDefaultPrimary,
       PictureSliceVariation,

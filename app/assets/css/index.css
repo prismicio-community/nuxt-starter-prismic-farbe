@@ -9,11 +9,15 @@
 }
 
 html {
-	@apply bg-white
+	@apply bg-white;
+}
+
+body {
+	@apply font-mono text-sm;
 }
 
 .cta {
-	@apply font-mono leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:bg-black focus-visible:text-white;
+	@apply leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:bg-black focus-visible:text-white;
 
 	&.primary {
 		@apply bg-green focus-visible:bg-black;
@@ -24,24 +28,25 @@ html {
 	}
 
 	&.outlined {
-		@apply border-2 border-black;
+		@apply border-[1.5px] border-black;
 	}
 }
 
 .rich-text > h1, .heading-1 {
-	@apply font-bold text-[max(5rem,5vw)] leading-none;
+	@apply font-sans font-bold text-[max(5rem,5vw)] leading-none;
 }
 
 .rich-text > h2, .heading-2 {
-	@apply font-bold text-[max(2.5rem,2.5vw)] leading-none;
+	@apply font-sans font-bold text-[max(2.5rem,2.5vw)] leading-none;
 }
 
 .rich-text > h3, .heading-3 {
-	@apply font-bold text-[max(1.25rem,1.25vw)] leading-none;
+	@apply font-sans font-bold text-[max(1.25rem,1.25vw)] leading-none;
 }
 
-.rich-text > p, .paragraph {
-	@apply font-mono max-w-[60ch] hyphens-auto;
+.rich-text > p, .paragraph,
+.rich-text > dl, .data-list {
+	@apply max-w-[40ch] hyphens-auto;
 
 	&:not(:first-child) {
 		@apply mt-4;
@@ -49,18 +54,8 @@ html {
 }
 
 .rich-text > dl, .data-list {
-	@apply font-mono max-w-[40ch] hyphens-auto;
-
-	&:not(:first-child) {
-		@apply mt-4;
-	}
-
 	& > div {
 		@apply flex justify-between;
-	}
-
-	& dt {
-		@apply font-bold;
 	}
 }
 

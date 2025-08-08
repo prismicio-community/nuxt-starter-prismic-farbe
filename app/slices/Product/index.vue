@@ -1,11 +1,31 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client"
 
-const props = defineProps(getSliceComponentProps<Content.ProductSlice>())
+const props = defineProps(getSliceComponentProps<
+	Content.ProductSlice,
+	{ stripeProducts: Record<string, StripeProduct> }
+>())
 
-const { isFilled } = usePrismic()
+const prismic = usePrismic()
 
-const product = isFilled.contentRelationship(props.slice.primary.product) ? props.slice.primary.product.uid : "800"
+const product = computed(() => {
+	const prismicProduct = props.slice.primary.product
+
+	if (!prismic.isFilled.contentRelationship(prismicProduct) || !prismicProduct.data?.stripe_id) {
+		return undefined
+	}
+
+	const stripeProduct = props.context.stripeProducts[prismicProduct.data.stripe_id]
+
+	if (!stripeProduct) {
+		return undefined
+	}
+
+	return {
+		...prismicProduct,
+		stripeProduct,
+	}
+})
 
 const $this = shallowRef<HTMLElement | null>(null)
 useGSAP(() => {
@@ -16,6 +36,8 @@ useGSAP(() => {
 	slideInChildren($this.value)
 })
 
+const { items, upsertItem } = useCart()
+
 const quantity = ref(1)
 function setQuantity(value: number) {
 	quantity.value = Math.max(1, value)
@@ -24,11 +46,17 @@ function setQuantity(value: number) {
 function onSubmit(event: Event) {
 	event.preventDefault()
 
-	const formData = new FormData(event.target as HTMLFormElement)
-	const sku = formData.get("sku")
-	const quantity = Number.parseInt(formData.get("quantity") as string) || 1
+	if (!product.value) {
+		return
+	}
 
-	console.log({ sku, quantity })
+	const maybeCartQuantity = items.value[product.value.stripeProduct.id]?.quantity ?? 0
+
+	upsertItem({
+		product: product.value.stripeProduct,
+		quantity: maybeCartQuantity + quantity.value,
+		name: prismic.asText(product.value.data?.name) ?? "",
+	})
 
 	setQuantity(1)
 }
@@ -36,26 +64,23 @@ function onSubmit(event: Event) {
 
 <template>
 	<article
-		:id="product"
+		v-if="product"
+		:id="product.uid"
 		ref="$this"
 		:data-slice="`${slice.slice_type}-${index}`"
-		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center gap-4"
+		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
 	>
-		<header class="flex justify-between max-w-[40ch]">
-			<h2 class="heading-2">
-				Farbe {{ product }}
-			</h2>
-			<p class="heading-2" aria-label="Price">
-				19€
+		<header class="rich-text">
+			<PrismicRichText :field="product.data?.name" />
+			<p aria-label="Price">
+				{{ product.stripeProduct.price.amount / 100 }}€ / roll
 			</p>
 		</header>
 		<section class="rich-text">
 			<h3 class="sr-only">
 				Description
 			</h3>
-			<p>
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam veniam deserunt sapiente amet repudiandae nesciunt voluptatem explicabo assumenda rem, dolore, eius qui nostrum eaque alias inventore itaque laudantium provident iure.
-			</p>
+			<PrismicRichText :field="product.data?.description" />
 		</section>
 		<section class="rich-text">
 			<h3 class="sr-only">
@@ -64,7 +89,7 @@ function onSubmit(event: Event) {
 			<dl>
 				<div>
 					<dt>ISO</dt>
-					<dd>100</dd>
+					<dd>{{ product.uid }}</dd>
 				</div>
 				<div>
 					<dt>Exposures</dt>
@@ -85,25 +110,28 @@ function onSubmit(event: Event) {
 			</dl>
 		</section>
 		<form
-			action="/api/cart"
-			method="POST"
-			class="mt-16 border-2 border-black max-w-[calc(40ch+2rem)] -ml-4 flex items-center"
-			@submit="onSubmit"
-		>
-			<button class="cta flex-1" type="button" @click="setQuantity(quantity - 1)">
-				-
-			</button>
-			<div class="flex-1 text-center" aria-live="polite">
-				{{ quantity }}
-			</div>
-			<button class="cta flex-1" type="button" @click="setQuantity(quantity + 1)">
-				+
-			</button>
-			<input type="hidden" name="sku" :value="product">
-			<input type="hidden" name="quantity" :value="quantity">
-			<button class="cta inverted" type="submit">
+				action="/api/cart"
+				method="POST"
+				class="mt-16 text-sm max-w-[calc(40ch+1rem)] -ml-4 flex"
+				@submit="onSubmit"
+			>
+				<div class="flex-1 flex items-center">
+					<button class="cta" type="button" @click="setQuantity(quantity - 1)">
+						-
+					</button>
+					<div class="flex-1 text-center" aria-live="polite">
+						{{ quantity }}
+					</div>
+					<button class="cta" type="button" @click="setQuantity(quantity + 1)">
+						+
+					</button>
+				</div>
+				<button class="flex-1 cta primary" type="submit">
 				Add to cart
 			</button>
 		</form>
+	</article>
+	<article v-else>
+		Product not found
 	</article>
 </template>

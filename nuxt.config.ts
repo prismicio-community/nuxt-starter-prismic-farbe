@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 		},
 	},
 	css: ["~/assets/css/index.css"],
-	modules: ["@tresjs/nuxt", "@nuxt/fonts", "@nuxtjs/prismic"],
+	modules: ["@tresjs/nuxt", "@nuxt/fonts", "@nuxtjs/prismic", "@unlok-co/nuxt-stripe"],
 
 	vite: {
 		plugins: [

@@ -15,8 +15,10 @@
 	},
 	"dependencies": {
 		"@nuxt/fonts": "0.11.4",
+		"@nuxtjs/prismic": "^4.1.0",
 		"@tresjs/cientos": "next",
 		"@tresjs/nuxt": "next",
+		"@unlok-co/nuxt-stripe": "^5.0.0",
 		"@vueuse/core": "^13.6.0",
 		"gsap": "^3.13.0",
 		"nuxt": "^4.0.2",
@@ -27,7 +29,6 @@
 	},
 	"devDependencies": {
 		"@lihbr/eslint-config": "^0.0.3",
-		"@nuxtjs/prismic": "^4.1.0",
 		"@slicemachine/adapter-nuxt": "^0.3.81",
 		"@tailwindcss/vite": "^4.1.11",
 		"@types/three": "^0.179.0",
