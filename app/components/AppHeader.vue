@@ -9,18 +9,16 @@ const { totalItems } = useCart()
 </script>
 
 <template>
-	<header class="backdrop-blur">
-		<nav>
-			<ul class="flex items-center">
-				<li class="w-3/5 pl-4 flex">
-					<NuxtLink to="/" class="cta py-px">
-						<BrandSignature class="text-lg" />
-					</NuxtLink>
-				</li>
+	<header>
+		<nav class="flex justify-between">
+			<NuxtLink to="/" class="cta py-px ml-4">
+				<BrandSignature class="text-lg" />
+			</NuxtLink>
+			<ul class="w-[calc(40%+2rem)] flex items-center pl-8 pr-4 backdrop-blur">
 				<li v-for="link in settings?.data.navigation" :key="link.key">
 					<PrismicLink :field="link" class="cta" />
 				</li>
-				<li class="ml-auto pr-4">
+				<li class="ml-auto">
 					<NuxtLink to="/#cart" class="cta">
 							Cart (<ClientOnly fallback="~">{{ totalItems }}</ClientOnly>)
 					</NuxtLink>
