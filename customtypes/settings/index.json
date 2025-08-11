@@ -1,47 +1,67 @@
 {
-	"format": "custom",
-	"id": "settings",
-	"label": "Settings",
-	"repeatable": false,
-	"status": true,
-	"json": {
-		"Main": {
-			"site_title": {
-				"type": "Text",
-				"config": {
-					"label": "Site Title",
-					"placeholder": ""
-				}
-			},
-			"meta_description": {
-				"type": "Text",
-				"config": {
-					"label": "Meta Description",
-					"placeholder": ""
-				}
-			},
-			"meta_image": {
-				"type": "Image",
-				"config": {
-					"label": "Meta Image",
-					"constraint": {
-						"width": 2400,
-						"height": 1260
-					},
-					"thumbnails": []
-				}
-			},
-			"navigation": {
-				"type": "Link",
-				"config": {
-					"label": "Navigation",
-					"placeholder": "",
-					"select": null,
-					"allowTargetBlank": true,
-					"allowText": true,
-					"repeat": true
-				}
-			}
-		}
-	}
+  "format": "custom",
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "site_title": {
+        "type": "Text",
+        "config": {
+          "label": "Site Title",
+          "placeholder": ""
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": ""
+        }
+      },
+      "meta_image": {
+        "type": "Image",
+        "config": {
+          "label": "Meta Image",
+          "constraint": {
+            "width": 2400,
+            "height": 1260
+          },
+          "thumbnails": []
+        }
+      },
+      "navigation": {
+        "type": "Link",
+        "config": {
+          "label": "Navigation",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      }
+    },
+    "Footer": {
+      "footer_text": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Footer Text",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,heading3,strong,em,hyperlink,list-item"
+        }
+      },
+      "footer_secondary_text": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Footer Secondary Text",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,heading3,strong,em,hyperlink,list-item"
+        }
+      }
+    }
+  }
 }

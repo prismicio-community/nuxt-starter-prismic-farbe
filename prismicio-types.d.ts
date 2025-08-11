@@ -247,7 +247,27 @@ interface SettingsDocumentData {
    */
   navigation: prismic.Repeatable<
     prismic.LinkField<string, string, unknown, prismic.FieldState, never>
-  >;
+  > /**
+   * Footer Text field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_text
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */;
+  footer_text: prismic.RichTextField;
+
+  /**
+   * Footer Secondary Text field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_secondary_text
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  footer_secondary_text: prismic.RichTextField;
 }
 
 /**
@@ -304,6 +324,16 @@ export interface CartSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   empty_text: prismic.RichTextField;
+
+  /**
+   * Product field in *Cart → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cart.default.primary.product
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  product: prismic.ContentRelationshipField<"product">;
 }
 
 /**

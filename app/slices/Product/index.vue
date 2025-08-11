@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client"
 
+import DescriptionDetails from "./DescriptionDetails.vue"
+import DescriptionList from "./DescriptionList.vue"
+import DescriptionTerm from "./DescriptionTerm.vue"
+import Div from "./Div.vue"
+import PassThrough from "./PassThrough.vue"
+
 const props = defineProps(getSliceComponentProps<
 	Content.ProductSlice,
 	{ stripeProducts: Record<string, StripeProduct> }
@@ -25,15 +31,6 @@ const product = computed(() => {
 		...prismicProduct,
 		stripeProduct,
 	}
-})
-
-const $this = shallowRef<HTMLElement | null>(null)
-useGSAP(() => {
-	if (!$this.value) {
-		return
-	}
-
-	slideInChildren($this.value)
 })
 
 const { items, upsertItem } = useCart()
@@ -63,17 +60,17 @@ function onSubmit(event: Event) {
 </script>
 
 <template>
-	<article
+	<AppSection
+		is="article"
 		v-if="product"
 		:id="product.uid"
-		ref="$this"
 		:data-slice="`${slice.slice_type}-${index}`"
 		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
 	>
 		<header class="rich-text">
 			<PrismicRichText :field="product.data?.name" />
 			<p aria-label="Price">
-				{{ product.stripeProduct.price.amount / 100 }}€ / roll
+				{{ formatPrice(product.stripeProduct.price.amount) }} / roll
 			</p>
 		</header>
 		<section class="rich-text">
@@ -86,52 +83,58 @@ function onSubmit(event: Event) {
 			<h3 class="sr-only">
 				Characteristics
 			</h3>
-			<dl>
-				<div>
-					<dt>ISO</dt>
-					<dd>{{ product.uid }}</dd>
-				</div>
-				<div>
-					<dt>Exposures</dt>
-					<dd>36</dd>
-				</div>
-				<div>
-					<dt>White balance</dt>
-					<dd>5600K</dd>
-				</div>
-				<div>
-					<dt>Stops tolerance</dt>
-					<dd>+3 -1</dd>
-				</div>
-				<div>
-					<dt>Development process</dt>
-					<dd>C-41</dd>
-				</div>
-			</dl>
+			<PrismicTable
+				:field="product.data?.characteristics"
+				:components="{
+					table: DescriptionList,
+					tbody: PassThrough,
+					tr: Div,
+					th: DescriptionTerm,
+					td: DescriptionDetails,
+				}"
+			/>
 		</section>
 		<form
-				action="/api/cart"
-				method="POST"
-				class="mt-16 text-sm max-w-[calc(40ch+1rem)] -ml-4 flex"
-				@submit="onSubmit"
-			>
-				<div class="flex-1 flex items-center">
-					<button class="cta" type="button" @click="setQuantity(quantity - 1)">
-						-
-					</button>
-					<div class="flex-1 text-center" aria-live="polite">
-						{{ quantity }}
-					</div>
-					<button class="cta" type="button" @click="setQuantity(quantity + 1)">
-						+
-					</button>
+			action="/api/cart"
+			method="POST"
+			class="mt-16 text-sm max-w-[calc(40ch+1rem)] -ml-4 flex items-start"
+			@submit="onSubmit"
+		>
+			<div class="flex-1 flex items-center">
+				<button class="cta" type="button" @click="setQuantity(quantity - 1)">
+					-
+				</button>
+				<div class="flex-1 text-center" aria-live="polite">
+					{{ quantity }}
 				</div>
-				<button class="flex-1 cta primary" type="submit">
-				Add to cart
-			</button>
+				<button class="cta" type="button" @click="setQuantity(quantity + 1)">
+					+
+				</button>
+			</div>
+			<div class="flex-1">
+				<button class="w-full cta primary" type="submit">
+					Add to cart
+				</button>
+				<ClientOnly>
+					<p
+						class="text-center"
+						:class="{
+							invisible: !items[product.stripeProduct.id]?.quantity,
+						}"
+					>
+						<NuxtLink to="/#cart" class="cta muted">
+							{{ items[product.stripeProduct.id]?.quantity }} in cart
+						</NuxtLink>
+					</p>
+				</ClientOnly>
+			</div>
 		</form>
-	</article>
-	<article v-else>
+	</AppSection>
+	<AppSection
+		is="article"
+		v-else
+		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
+	>
 		Product not found
-	</article>
+	</AppSection>
 </template>

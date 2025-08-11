@@ -22,9 +22,7 @@ const { totalItems } = useCart()
 				</li>
 				<li class="ml-auto pr-4">
 					<NuxtLink to="/#cart" class="cta">
-						<ClientOnly>
-							Cart ({{ totalItems }})
-						</ClientOnly>
+							Cart (<ClientOnly fallback="~">{{ totalItems }}</ClientOnly>)
 					</NuxtLink>
 				</li>
 			</ul>

@@ -38,6 +38,17 @@
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink"
           }
+        },
+        "product": {
+          "type": "Link",
+          "config": {
+            "label": "Product",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "product"
+            ]
+          }
         }
       },
       "items": {}

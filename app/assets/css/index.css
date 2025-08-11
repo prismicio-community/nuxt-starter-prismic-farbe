@@ -9,7 +9,7 @@
 }
 
 html {
-	@apply bg-white;
+	@apply bg-white scroll-smooth;
 }
 
 body {
@@ -27,42 +27,51 @@ body {
 		@apply bg-black text-white focus-visible:bg-transparent focus-visible:text-black;
 	}
 
+	&.muted {
+		@apply opacity-50 hover:opacity-100 focus-visible:opacity-100;
+	}
+
 	&.outlined {
 		@apply border-[1.5px] border-black;
 	}
 }
 
-.rich-text > h1, .heading-1 {
-	@apply font-sans font-bold text-[max(5rem,5vw)] leading-none;
-}
-
-.rich-text > h2, .heading-2 {
-	@apply font-sans font-bold text-[max(2.5rem,2.5vw)] leading-none;
-}
-
-.rich-text > h3, .heading-3 {
-	@apply font-sans font-bold text-[max(1.25rem,1.25vw)] leading-none;
-}
-
-.rich-text > p, .paragraph,
-.rich-text > dl, .data-list {
-	@apply max-w-[40ch] hyphens-auto;
-
-	&:not(:first-child) {
-		@apply mt-4;
+.rich-text {
+	& > h1 {
+		@apply font-sans font-bold text-[max(5rem,5vw)] leading-none;
 	}
-}
-
-.rich-text > dl, .data-list {
-	& > div {
+	
+	& > h2 {
+		@apply font-sans font-bold text-[max(2.5rem,2.5vw)] leading-none;
+	}
+	
+	& > h3  {
+		@apply font-sans font-bold text-[max(1.25rem,1.25vw)] leading-none;
+	
+		&:not(:first-child) {
+			@apply mt-16;
+		}
+	}
+	
+	& > p,
+	& > ul,
+	& > ul > li,
+	& > dl {
+		@apply max-w-[40ch] hyphens-auto;
+	
+		&:not(:first-child) {
+			@apply mt-4;
+		}
+	}
+	
+	& > dl > div {
 		@apply flex justify-between;
 	}
-}
 
-.rich-text {
-	& > p, & > dl {
+	& > p, & > dl, & li {
 		& > a {
 			@apply underline focus:outline-none focus:bg-black focus:text-white;
 		}
 	}
 }
+

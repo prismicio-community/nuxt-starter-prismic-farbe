@@ -3,7 +3,6 @@
 import type { Content } from "@prismicio/client"
 import type { Group } from "three"
 
-import type { Tween } from "three/examples/jsm/libs/tween.module.js"
 import { isFilled } from "@prismicio/client"
 import { gsap } from "gsap"
 
@@ -12,20 +11,19 @@ const props = defineProps<{
 }>()
 
 const model = ref<string>("800")
+const { totalItems } = useCart()
 
 const $canister = shallowRef<Group | null>(null)
 const $canisterInternal = shallowRef<Group | null>(null)
 const $packaging = shallowRef<Group | null>(null)
 
-const { onBeforeRender } = useLoop()
-
-onBeforeRender(({ elapsed }) => {
+useLoop().onBeforeRender(({ elapsed }) => {
 	if ($canisterInternal.value) {
 		$canisterInternal.value.rotation.y = Math.PI / 4 - Math.sin(elapsed * 0.25) * Math.PI / 2
 	}
 })
 
-useGSAP(() => {
+useGSAP((isReducedMotion) => {
 	if (!$canister.value || !$packaging.value) {
 		return
 	}
@@ -46,8 +44,8 @@ useGSAP(() => {
 
 			function onUpdate(this: gsap.TweenVars) {
 				if (
-					this.progress() > 0.4 &&
-					this.progress() < 0.6 &&
+					this.progress() > 0.3 &&
+					this.progress() < 0.7 &&
 					product !== model.value
 				) {
 					model.value = product
@@ -96,23 +94,26 @@ useGSAP(() => {
 							invalidateOnRefresh: true,
 						},
 					})
-					gsap.to([$canisterRotation, $packagingRotation], {
-						y: `+=${Math.PI * 2}`,
-						stagger: 0.05,
-						// duration: 1.2,
-						ease: "power2.inOut",
-						repeatRefresh: true,
-						onUpdate,
-						scrollTrigger: {
-							trigger: selector,
-							start: "top+=10% center",
-							end: "bottom-=10% center",
-							// toggleActions: "play reset play reset",
-							scrub: 0.6,
-							invalidateOnRefresh: true,
-							onRefresh,
-						},
-					})
+
+					if (!isReducedMotion) {
+						gsap.to([$canisterRotation, $packagingRotation], {
+							y: `+=${Math.PI * 2}`,
+							stagger: 0.05,
+							// duration: 1.2,
+							ease: "linear",
+							repeatRefresh: true,
+							onUpdate,
+							scrollTrigger: {
+								trigger: selector,
+								start: "top center",
+								end: "bottom center",
+								// toggleActions: "play reset play reset",
+								scrub: 0.6,
+								invalidateOnRefresh: true,
+								onRefresh,
+							},
+						})
+					}
 					break
 
 				case "picture":
@@ -136,9 +137,9 @@ useGSAP(() => {
 		})
 	}
 
+	// Intro animation
 	const firstSlice = props.slices[0]
-
-	if (firstSlice?.slice_type === "text" && window.scrollY < 20) {
+	if (!isReducedMotion && firstSlice?.slice_type === "text" && window.scrollY < 20) {
 		gsap.fromTo([$canisterPosition, $packagingPosition], {
 			y: -12,
 		}, {
@@ -151,6 +152,22 @@ useGSAP(() => {
 		})
 	} else {
 		animateScroll()
+	}
+
+	// Spin on add to cart
+	if (!isReducedMotion) {
+		watch(totalItems, (next, prev) => {
+			if (next <= prev) {
+				return
+			}
+	
+			gsap.to([$canisterRotation, $packagingRotation], {
+				y: `+=${Math.PI * 2}`,
+				stagger: 0.05,
+				duration: 0.8,
+				ease: "power2.inOut",
+			})
+		})
 	}
 }, () => props.slices)
 </script>

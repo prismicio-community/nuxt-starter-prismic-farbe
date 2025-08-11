@@ -1,28 +1,13 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client"
-import { gsap } from "gsap"
+import AppSection from "@/components/AppSection.vue"
 
-const props = defineProps(getSliceComponentProps<Content.TextSlice>())
-
-const $this = shallowRef<HTMLElement | null>(null)
-
-useGSAP(() => {
-	if (!$this.value) {
-		return
-	}
-
-	slideInChildren($this.value)
-
-	if (props.slice.variation === "fullscreen") {
-		gsap.set($this.value, { opacity: 1 })
-	}
-})
+defineProps(getSliceComponentProps<Content.TextSlice>())
 </script>
 
 <template>
-	<section
+	<AppSection
 		:id="index.toString()"
-		ref="$this"
 		:data-slice="`${slice.slice_type}-${index}`"
 		class="w-2/5 ml-auto py-16 px-4 rich-text flex flex-col justify-center"
 		:class="{
@@ -41,5 +26,5 @@ useGSAP(() => {
 				:class="link.variant?.toLowerCase()"
 			/>
 		</div>
-	</section>
+	</AppSection>
 </template>
