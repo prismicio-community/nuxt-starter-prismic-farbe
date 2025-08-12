@@ -1,7 +1,14 @@
 <script lang="ts" setup>
 import gsap from "gsap"
 
-defineProps<{ is?: string }>()
+defineProps<{
+	is?: string
+	scene?: {
+		position?: "top" | "center"
+		model?: string
+		rotate?: boolean
+	}
+}>()
 
 const $this = shallowRef<HTMLElement | null>(null)
 useGSAP((isReducedMotion) => {
@@ -31,7 +38,14 @@ useGSAP((isReducedMotion) => {
 </script>
 
 <template>
-	<component :is="is || 'section'" ref="$this">
+	<component
+		:is="is || 'section'"
+		ref="$this"
+		data-scene
+		:data-scene-position="scene?.position"
+		:data-scene-rotate="scene?.rotate"
+		:data-scene-model="scene?.model"
+	>
 		<slot />
 	</component>
 </template>

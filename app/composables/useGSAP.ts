@@ -13,9 +13,9 @@ export function useGSAP(
 		nextTick(() => {
 			ctx = gsap.context(() => {
 				gsap.registerPlugin(ScrollTrigger)
-	
+
 				callback(window?.matchMedia("(prefers-reduced-motion: reduce)").matches ?? false)
-	
+
 				ScrollTrigger.refresh()
 			})
 		})

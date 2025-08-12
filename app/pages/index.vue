@@ -24,8 +24,5 @@ useSeoMeta({
 			:components="components"
 			:context="{ stripeProducts }"
 		/>
-		<TCanvas>
-			<TScene :slices="page?.data.slices ?? []" />
-		</TCanvas>
 	</main>
 </template>

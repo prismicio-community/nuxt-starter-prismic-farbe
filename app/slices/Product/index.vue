@@ -64,7 +64,7 @@ function onSubmit(event: Event) {
 		is="article"
 		v-if="product"
 		:id="product.uid"
-		:data-slice="`${slice.slice_type}-${index}`"
+		:scene="{ position: 'center', model: product.uid, rotate: true }"
 		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
 	>
 		<header class="rich-text">
@@ -134,6 +134,7 @@ function onSubmit(event: Event) {
 		is="article"
 		v-else
 		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
+		:scene="{ position: 'center' }"
 	>
 		Product not found
 	</AppSection>

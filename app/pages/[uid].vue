@@ -16,13 +16,6 @@ useSeoMeta({
 	ogDescription: page.value?.data.meta_description ?? undefined,
 	ogImage: computed(() => prismic.asImageSrc(page.value?.data.meta_image) ?? undefined),
 })
-
-onMounted(() => {
-  if (route.params.uid === "thanks" && route.query.order === "completed") {
-    useCart().clear()
-    useRouter().replace({ path: route.path })
-  }
-})
 </script>
 
 <template>
@@ -32,8 +25,5 @@ onMounted(() => {
 			:components="components"
 			:context="{ stripeProducts }"
 		/>
-		<TCanvas>
-			<TScene :slices="page?.data.slices ?? []" />
-		</TCanvas>
 	</main>
 </template>

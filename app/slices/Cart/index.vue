@@ -10,7 +10,10 @@ const { items, removeItem, totalPrice } = useCart()
 	<AppSection
 		is="form"
 		id="cart"
-		:data-slice="`${slice.slice_type}-${index}`"
+		:scene="{
+			position: 'center',
+			model: $prismic.isFilled.contentRelationship(slice.primary.product) ? slice.primary.product.uid : undefined,
+		}"
 		class="w-2/5 ml-auto pt-32 pb-16 px-4 rich-text min-h-screen flex flex-col"
 		method="POST"
 		action="/api/checkout"

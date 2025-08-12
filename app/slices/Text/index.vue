@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client"
-import AppSection from "@/components/AppSection.vue"
 
 defineProps(getSliceComponentProps<Content.TextSlice>())
 </script>
 
 <template>
 	<AppSection
-		:id="index.toString()"
-		:data-slice="`${slice.slice_type}-${index}`"
+		:scene="{
+			position: 'center',
+			model: $prismic.isFilled.contentRelationship(slice.primary.product) ? slice.primary.product.uid : undefined,
+		}"
 		class="w-2/5 ml-auto py-16 px-4 rich-text flex flex-col justify-center"
 		:class="{
 			'min-h-[40vh]': slice.variation !== 'fullscreen',

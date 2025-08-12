@@ -1,18 +1,12 @@
 <script lang="ts" setup>
 /* eslint-disable vue/attribute-hyphenation */
-import type { Content } from "@prismicio/client"
 import type { Group } from "three"
-
-import { isFilled } from "@prismicio/client"
 import { gsap } from "gsap"
 
-const props = defineProps<{
-	slices: Content.PageDocumentDataSlicesSlice[]
-}>()
-
-const model = ref<string>("800")
 const { totalItems } = useCart()
+const route = useRoute()
 
+const activeModel = ref<string>("800")
 const $canister = shallowRef<Group | null>(null)
 const $canisterInternal = shallowRef<Group | null>(null)
 const $packaging = shallowRef<Group | null>(null)
@@ -35,111 +29,65 @@ useGSAP((isReducedMotion) => {
 	const $packagingRotation = $packaging.value.rotation
 
 	function animateScroll() {
-		props.slices.forEach((slice, index) => {
-			const selector = `[data-slice="${slice.slice_type}-${index}"]`
+		const $sections = document.querySelectorAll<HTMLElement>("[data-scene]")
 
-			const product = isFilled.contentRelationship(slice.primary.product) && slice.primary.product.uid
-				? slice.primary.product.uid
-				: "800"
+		$sections.forEach(($section) => {
+			const model = $section.dataset.sceneModel
+			const position = $section.dataset.scenePosition
+			const shouldRotate = Boolean($section.dataset.sceneRotate)
 
 			function onUpdate(this: gsap.TweenVars) {
-				if (
-					this.progress() > 0.3 &&
-					this.progress() < 0.7 &&
-					product !== model.value
-				) {
-					model.value = product
+				if (this.progress() > 0.2 && this.progress() < 0.7 && model) {
+					activeModel.value = model
 				}
 			}
 
 			function onRefresh(self: ScrollTrigger) {
-				if (
-					self.isActive &&
-					product !== model.value
-				) {
-					model.value = product
+				if (self.isActive && model) {
+					activeModel.value = model
 				}
 			}
 
-			switch (slice.slice_type) {
-				case "text":
-					gsap.to([$canisterPosition, $packagingPosition], {
-						y: 0,
-						stagger: 0.05,
-						ease: "power2.inOut",
-						repeatRefresh: true,
-						onUpdate,
-						scrollTrigger: {
-							trigger: selector,
-							start: "top+=40% bottom",
-							end: "bottom bottom",
-							scrub: true,
-							invalidateOnRefresh: true,
-							onRefresh,
-						},
-					})
-					break
+			if (position === "center" || position === "top") {
+				gsap.to([$canisterPosition, $packagingPosition], {
+					y: position === "center" ? 0 : 16,
+					stagger: 0.05,
+					ease: "power2.inOut",
+					repeatRefresh: true,
+					onUpdate: shouldRotate ? undefined : onUpdate,
+					scrollTrigger: {
+						trigger: $section,
+						start: position === "center" ? "top+=40% bottom" : "top-=20% bottom",
+						end: "bottom bottom",
+						scrub: true,
+						invalidateOnRefresh: true,
+						onRefresh: shouldRotate ? undefined : onRefresh,
+					},
+				})
+			}
 
-				case "product":
-					gsap.to([$canisterPosition, $packagingPosition], {
-						y: 0,
-						stagger: 0.05,
-						ease: "power2.inOut",
-						repeatRefresh: true,
-						scrollTrigger: {
-							trigger: selector,
-							start: "top+=40% bottom",
-							end: "bottom bottom",
-							scrub: true,
-							invalidateOnRefresh: true,
-						},
-					})
-
-					if (!isReducedMotion) {
-						gsap.to([$canisterRotation, $packagingRotation], {
-							y: `+=${Math.PI * 2}`,
-							stagger: 0.05,
-							// duration: 1.2,
-							ease: "linear",
-							repeatRefresh: true,
-							onUpdate,
-							scrollTrigger: {
-								trigger: selector,
-								start: "top center",
-								end: "bottom center",
-								// toggleActions: "play reset play reset",
-								scrub: 0.6,
-								invalidateOnRefresh: true,
-								onRefresh,
-							},
-						})
-					}
-					break
-
-				case "picture":
-					gsap.to([$canisterPosition, $packagingPosition], {
-						y: 16,
-						stagger: 0.05,
-						ease: "power2.inOut",
-						repeatRefresh: true,
-						onUpdate,
-						scrollTrigger: {
-							trigger: selector,
-							start: "top-=20% bottom",
-							end: "bottom bottom",
-							scrub: true,
-							invalidateOnRefresh: true,
-							onRefresh,
-						},
-					})
-					break
+			if (!isReducedMotion && shouldRotate) {
+				gsap.to([$canisterRotation, $packagingRotation], {
+					y: `+=${Math.PI * 2}`,
+					stagger: 0.05,
+					ease: "linear",
+					repeatRefresh: true,
+					onUpdate,
+					scrollTrigger: {
+						trigger: $section,
+						start: "top center",
+						end: "bottom center",
+						scrub: 0.6,
+						invalidateOnRefresh: true,
+						onRefresh,
+					},
+				})
 			}
 		})
 	}
 
 	// Intro animation
-	const firstSlice = props.slices[0]
-	if (!isReducedMotion && firstSlice?.slice_type === "text" && window.scrollY < 20) {
+	if (!isReducedMotion && window.scrollY < 20) {
 		gsap.fromTo([$canisterPosition, $packagingPosition], {
 			y: -12,
 		}, {
@@ -160,7 +108,7 @@ useGSAP((isReducedMotion) => {
 			if (next <= prev) {
 				return
 			}
-	
+
 			gsap.to([$canisterRotation, $packagingRotation], {
 				y: `+=${Math.PI * 2}`,
 				stagger: 0.05,
@@ -169,7 +117,7 @@ useGSAP((isReducedMotion) => {
 			})
 		})
 	}
-}, () => props.slices)
+}, () => route.path)
 </script>
 
 <template>
@@ -179,7 +127,7 @@ useGSAP((isReducedMotion) => {
 				<TresGroup ref="$canister">
 					<TresGroup ref="$canisterInternal">
 						<TFilmCanister
-							:model="model"
+							:model="activeModel"
 							:rotation="[0, 0, Math.PI / 8]"
 						/>
 					</TresGroup>
@@ -190,7 +138,7 @@ useGSAP((isReducedMotion) => {
 			<Levioso>
 				<TresGroup ref="$packaging">
 					<TFilmPackaging
-						:model="model"
+						:model="activeModel"
 						:rotation="[-Math.PI / 2, 0, Math.PI / 3]"
 					/>
 				</TresGroup>
