@@ -19,21 +19,21 @@
 		"@tresjs/cientos": "next",
 		"@tresjs/nuxt": "next",
 		"@unlok-co/nuxt-stripe": "^5.0.0",
-		"@vueuse/core": "^13.6.0",
+		"@vueuse/core": "^13.7.0",
 		"gsap": "^3.13.0",
-		"nuxt": "^4.0.2",
-		"tailwindcss": "^4.1.11",
+		"nuxt": "^4.0.3",
+		"tailwindcss": "^4.1.12",
 		"three": "^0.179.1",
-		"vue": "^3.5.18",
+		"vue": "^3.5.19",
 		"vue-router": "^4.5.1"
 	},
 	"devDependencies": {
 		"@lihbr/eslint-config": "^0.0.3",
-		"@slicemachine/adapter-nuxt": "^0.3.81",
-		"@tailwindcss/vite": "^4.1.11",
+		"@slicemachine/adapter-nuxt": "^0.3.83",
+		"@tailwindcss/vite": "^4.1.12",
 		"@types/three": "^0.179.0",
-		"eslint": "^9.32.0",
-		"slice-machine-ui": "^2.17.1",
+		"eslint": "^9.33.0",
+		"slice-machine-ui": "^2.18.1",
 		"typescript": "^5.9.2"
 	}
 }

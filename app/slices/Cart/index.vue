@@ -7,16 +7,16 @@ const { items, removeItem, totalPrice } = useCart()
 </script>
 
 <template>
-	<AppSection
-		is="form"
+	<SlideIn
 		id="cart"
-		:scene="{
-			position: 'center',
-			model: $prismic.isFilled.contentRelationship(slice.primary.product) ? slice.primary.product.uid : undefined,
-		}"
+		as="form"
 		class="w-2/5 ml-auto pt-32 pb-16 px-4 rich-text min-h-screen flex flex-col"
 		method="POST"
 		action="/api/checkout"
+		v-bind="getSceneAttributes({
+			position: 'center',
+			model: $prismic.isFilled.contentRelationship(slice.primary.product) ? slice.primary.product.uid : undefined,
+		})"
 	>
 		<PrismicRichText :field="slice.primary.title" />
 		<ClientOnly>
@@ -54,5 +54,5 @@ const { items, removeItem, totalPrice } = useCart()
 			</template>
 			<PrismicRichText v-else :field="slice.primary.empty_text" />
 		</ClientOnly>
-	</AppSection>
+	</SlideIn>
 </template>

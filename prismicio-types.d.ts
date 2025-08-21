@@ -388,6 +388,26 @@ export interface PictureSliceDefaultPrimary {
   caption: prismic.RichTextField;
 
   /**
+   * Secondary Picture (optional) field in *Picture → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: picture.default.primary.secondary_picture
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  secondary_picture: prismic.ImageField<never>;
+
+  /**
+   * Secondary Caption (optional) field in *Picture → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: picture.default.primary.secondary_caption
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  secondary_caption: prismic.RichTextField;
+
+  /**
    * Product field in *Picture → Default → Primary*
    *
    * - **Field Type**: Content Relationship
@@ -412,9 +432,77 @@ export type PictureSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Picture → Reversed → Primary*
+ */
+export interface PictureSliceReversedPrimary {
+  /**
+   * Picture field in *Picture → Reversed → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: picture.reversed.primary.picture
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  picture: prismic.ImageField<never>;
+
+  /**
+   * Caption field in *Picture → Reversed → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: picture.reversed.primary.caption
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  caption: prismic.RichTextField;
+
+  /**
+   * Secondary Picture (optional) field in *Picture → Reversed → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: picture.reversed.primary.secondary_picture
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  secondary_picture: prismic.ImageField<never>;
+
+  /**
+   * Secondary Caption (optional) field in *Picture → Reversed → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: picture.reversed.primary.secondary_caption
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  secondary_caption: prismic.RichTextField;
+
+  /**
+   * Product field in *Picture → Reversed → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: picture.reversed.primary.product
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  product: prismic.ContentRelationshipField<"product">;
+}
+
+/**
+ * Reversed variation for Picture Slice
+ *
+ * - **API ID**: `reversed`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PictureSliceReversed = prismic.SharedSliceVariation<
+  "reversed",
+  Simplify<PictureSliceReversedPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Picture*
  */
-type PictureSliceVariation = PictureSliceDefault;
+type PictureSliceVariation = PictureSliceDefault | PictureSliceReversed;
 
 /**
  * Picture Shared Slice
@@ -661,8 +749,10 @@ declare module "@prismicio/client" {
       CartSliceDefault,
       PictureSlice,
       PictureSliceDefaultPrimary,
+      PictureSliceReversedPrimary,
       PictureSliceVariation,
       PictureSliceDefault,
+      PictureSliceReversed,
       ProductSlice,
       ProductSliceDefaultPrimary,
       ProductSliceVariation,

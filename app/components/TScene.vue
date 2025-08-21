@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 /* eslint-disable vue/attribute-hyphenation */
-import type { Group } from "three"
 import { gsap } from "gsap"
+import type { Group } from "three"
 
 const { totalItems } = useCart()
 const route = useRoute()
@@ -29,12 +29,12 @@ useGSAP((isReducedMotion) => {
 	const $packagingRotation = $packaging.value.rotation
 
 	function animateScroll() {
-		const $sections = document.querySelectorAll<HTMLElement>("[data-scene]")
+		const $sections = document.querySelectorAll<HTMLElement>("[data-scene-position]")
 
 		$sections.forEach(($section) => {
 			const model = $section.dataset.sceneModel
 			const position = $section.dataset.scenePosition
-			const shouldRotate = Boolean($section.dataset.sceneRotate)
+			const shouldRotate = !isReducedMotion && Boolean($section.dataset.sceneRotate)
 
 			function onUpdate(this: gsap.TweenVars) {
 				if (this.progress() > 0.2 && this.progress() < 0.7 && model) {
@@ -66,7 +66,7 @@ useGSAP((isReducedMotion) => {
 				})
 			}
 
-			if (!isReducedMotion && shouldRotate) {
+			if (shouldRotate) {
 				gsap.to([$canisterRotation, $packagingRotation], {
 					y: `+=${Math.PI * 2}`,
 					stagger: 0.05,

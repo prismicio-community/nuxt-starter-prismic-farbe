@@ -5,12 +5,12 @@ defineProps(getSliceComponentProps<Content.TextSlice>())
 </script>
 
 <template>
-	<AppSection
-		:scene="{
+	<SlideIn
+		v-bind="getSceneAttributes({
 			position: 'center',
 			model: $prismic.isFilled.contentRelationship(slice.primary.product) ? slice.primary.product.uid : undefined,
-		}"
-		class="w-2/5 ml-auto py-16 px-4 rich-text flex flex-col justify-center"
+		})"
+		class="ml-auto w-2/5 py-16 px-4 rich-text flex flex-col justify-center"
 		:class="{
 			'min-h-[40vh]': slice.variation !== 'fullscreen',
 			'min-h-screen opacity-0': slice.variation === 'fullscreen',
@@ -27,5 +27,5 @@ defineProps(getSliceComponentProps<Content.TextSlice>())
 				:class="link.variant?.toLowerCase()"
 			/>
 		</div>
-	</AppSection>
+	</SlideIn>
 </template>

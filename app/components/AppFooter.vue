@@ -8,7 +8,8 @@ defineProps<{
 
 <template>
 	<footer
-		class="relative z-10 bg-black text-white"
+		class="relative z-20 bg-black text-white"
+		v-bind="getSceneAttributes({ position: 'top' })"
 	>
 		<figure class="absolute inset-0 pointer-events-none overflow-hidden">
 			<svg class="sticky top-0 left-0 h-screen w-auto" width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,14 +23,11 @@ defineProps<{
 				</defs>
 			</svg>
 		</figure>
-		<AppSection
-			class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col mix-blend-difference"
-			:scene="{ position: 'top' }"
-		>
+		<SlideIn class="ml-auto w-2/5 py-16 px-4 rich-text min-h-screen flex flex-col mix-blend-difference">
 			<h2><BrandSignature /></h2>
 			<PrismicRichText :field="settings?.data.footer_text" />
 			<hr class="flex-1 border-none">
 			<PrismicRichText :field="settings?.data.footer_secondary_text" />
-		</AppSection>
+		</SlideIn>
 	</footer>
 </template>

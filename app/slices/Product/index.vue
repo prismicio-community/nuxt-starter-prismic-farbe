@@ -60,12 +60,12 @@ function onSubmit(event: Event) {
 </script>
 
 <template>
-	<AppSection
-		is="article"
+	<SlideIn
 		v-if="product"
+		v-bind="getSceneAttributes({ position: 'center', model: product.uid, rotate: true })"
 		:id="product.uid"
-		:scene="{ position: 'center', model: product.uid, rotate: true }"
-		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
+		as="article"
+		class="ml-auto w-2/5 py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
 	>
 		<header class="rich-text">
 			<PrismicRichText :field="product.data?.name" />
@@ -129,13 +129,13 @@ function onSubmit(event: Event) {
 				</ClientOnly>
 			</div>
 		</form>
-	</AppSection>
-	<AppSection
-		is="article"
+	</SlideIn>
+	<SlideIn
 		v-else
-		class="w-2/5 ml-auto py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
-		:scene="{ position: 'center' }"
+		as="article"
+		v-bind="getSceneAttributes({ position: 'center' })"
+		class="ml-auto w-2/5 py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
 	>
-		Product not found
-	</AppSection>
+		<p>Product not found</p>
+	</SlideIn>
 </template>
