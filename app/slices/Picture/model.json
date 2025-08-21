@@ -61,8 +61,64 @@
       "items": {}
     },
     {
-      "id": "reversed",
-      "name": "Reversed",
+      "id": "top",
+      "name": "Top",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "picture": {
+          "type": "Image",
+          "config": {
+            "label": "Picture",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "caption": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Caption",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,hyperlink,strong,em"
+          }
+        },
+        "secondary_picture": {
+          "type": "Image",
+          "config": {
+            "label": "Secondary Picture (optional)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "secondary_caption": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Secondary Caption (optional)",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,hyperlink,strong,em"
+          }
+        },
+        "product": {
+          "type": "Link",
+          "config": {
+            "label": "Product",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "product"
+            ]
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "bottom",
+      "name": "Bottom",
       "docURL": "...",
       "version": "initial",
       "description": "Default",

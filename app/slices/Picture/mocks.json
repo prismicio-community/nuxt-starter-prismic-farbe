@@ -74,18 +74,19 @@
 	},
 	{
 		"__TYPE__": "SharedSliceContent",
-		"variation": "reversed",
+		"variation": "top",
 		"primary": {
 			"picture": {
+				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
-					"url": "https://images.unsplash.com/photo-1589321578146-4c1ba445cc88",
-					"width": 3168,
-					"height": 4752
+					"url": "https://images.unsplash.com/photo-1607582278043-57198ac8da43",
+					"width": 4024,
+					"height": 4024
 				},
-				"url": "https://images.unsplash.com/photo-1589321578146-4c1ba445cc88",
-				"width": 3168,
-				"height": 4752,
+				"url": "https://images.unsplash.com/photo-1607582278043-57198ac8da43",
+				"width": 4024,
+				"height": 4024,
 				"edit": {
 					"zoom": 1,
 					"crop": {
@@ -94,9 +95,7 @@
 					},
 					"background": "transparent"
 				},
-				"alt": "driver",
-				"credits": null,
-				"__TYPE__": "ImageContent",
+				"alt": "variety",
 				"thumbnails": {}
 			},
 			"caption": {
@@ -105,12 +104,99 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Consequat fugiat ut pariatur velit aute sunt. Duis irure aute qui dolor laboris labore labore aute nostrud anim est ullamco magna sunt."
+							"text": "Consectetur voluptate ullamco irure enim enim incididunt pariatur labore ut voluptate qui deserunt minim anim."
 						}
 					}
 				]
 			},
 			"secondary_picture": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
+					"width": 4000,
+					"height": 4000
+				},
+				"url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
+				"width": 4000,
+				"height": 4000,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "split",
+				"thumbnails": {}
+			},
+			"secondary_caption": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Laboris ad magna velit consequat sunt et laborum excepteur voluptate minim excepteur fugiat anim magna cillum."
+						}
+					}
+				]
+			},
+			"product": {
+				"__TYPE__": "LinkContent",
+				"key": "14a8d152-4f2a-41a3-8899-9333b4575c63",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "bottom",
+		"primary": {
+			"picture": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e",
+					"width": 6000,
+					"height": 4000
+				},
+				"url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e",
+				"width": 6000,
+				"height": 4000,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "journey",
+				"thumbnails": {}
+			},
+			"caption": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Sunt laboris cupidatat id incididunt excepteur commodo fugiat labore dolore. Irure ullamco elit culpa incididunt laborum ex reprehenderit."
+						}
+					}
+				]
+			},
+			"secondary_picture": {
+				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1587614295999-6c1c13675117",
@@ -128,9 +214,7 @@
 					},
 					"background": "transparent"
 				},
-				"alt": "person",
-				"credits": null,
-				"__TYPE__": "ImageContent",
+				"alt": "soon",
 				"thumbnails": {}
 			},
 			"secondary_caption": {
@@ -139,14 +223,14 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Reprehenderit mollit veniam consectetur. Voluptate commodo reprehenderit Lorem esse sunt nisi deserunt minim enim. Aliquip cupidatat dolore aliqua reprehenderit occaecat."
+							"text": "Non duis eiusmod tempor mollit. Eu ullamco excepteur commodo labore aute aute irure irure. Amet cupidatat anim ad elit."
 						}
 					}
 				]
 			},
 			"product": {
-				"key": "3d4d0eef-4e97-4be2-a67c-d8094cdc4561",
 				"__TYPE__": "LinkContent",
+				"key": "56b343ec-2a92-4c98-9245-f7752c1d6251",
 				"value": {
 					"__TYPE__": "DocumentLink",
 					"id": "mock_document_id"

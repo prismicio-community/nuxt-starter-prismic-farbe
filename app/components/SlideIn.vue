@@ -25,7 +25,7 @@ useGSAP((isReducedMotion) => {
 		stagger: 0.2,
 		scrollTrigger: {
 			trigger: $this.value,
-			start: "top bottom-=40%",
+			start: "top bottom-=25%",
 		},
 	})
 })
