@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 /* eslint-disable vue/attribute-hyphenation */
-import { gsap } from "gsap"
 import type { Group } from "three"
+import { gsap } from "gsap"
 
 const { totalItems } = useCart()
 const route = useRoute()
@@ -57,8 +57,10 @@ useGSAP((isReducedMotion) => {
 					onUpdate: shouldRotate ? undefined : onUpdate,
 					scrollTrigger: {
 						trigger: $section,
-						start: position === "center" ? "top+=40% bottom" : "top-=20% bottom",
+						start: position === "center" ? "top+=40% bottom" : "top bottom",
 						end: "bottom bottom",
+						markers: true,
+						id: `${position}-${Math.random().toString(16).slice(2, 6)}`,
 						scrub: true,
 						invalidateOnRefresh: true,
 						onRefresh: shouldRotate ? undefined : onRefresh,

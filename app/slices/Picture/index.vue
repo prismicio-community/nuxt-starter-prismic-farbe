@@ -13,7 +13,11 @@ defineProps(getSliceComponentProps<Content.PictureSlice>())
 		class="grid grid-cols-[3fr_2fr]"
 	>
 		<figure class="contents">
-			<PrismicImage :field="slice.primary.picture" class="z-20 w-full row-span-2 aspect-[3/4] object-cover" />
+			<PrismicImage
+				:field="slice.primary.picture"
+				class="z-20 w-full row-span-2"
+				loading="lazy"
+			/>
 			<SlideIn
 				as="figcaption"
 				class="px-4 pt-4 pb-16 rich-text"
@@ -26,14 +30,18 @@ defineProps(getSliceComponentProps<Content.PictureSlice>())
 			</SlideIn>
 		</figure>
 		<figure
-			v-if="$prismic.isFilled.image(slice.primary.picture)"
+			v-if="$prismic.isFilled.image(slice.primary.secondary_picture)"
 			class="flex flex-col"
 			:class="{
 				'self-end': slice.variation === 'default' || slice.variation === 'bottom',
 				'self-start': slice.variation === 'top',
 			}"
 		>
-			<PrismicImage :field="slice.primary.picture" class="z-20 w-full" />
+			<PrismicImage
+				:field="slice.primary.secondary_picture"
+				class="z-20 w-full"
+				loading="lazy"
+			/>
 			<SlideIn
 				as="figcaption"
 				class="px-4 pt-4 pb-16 rich-text"
@@ -41,7 +49,7 @@ defineProps(getSliceComponentProps<Content.PictureSlice>())
 					'order-first': slice.variation === 'bottom',
 				}"
 			>
-				<PrismicRichText :field="slice.primary.caption" />
+				<PrismicRichText :field="slice.primary.secondary_caption" />
 			</SlideIn>
 		</figure>
 	</section>
