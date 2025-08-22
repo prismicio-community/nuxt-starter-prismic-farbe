@@ -58,9 +58,7 @@ useGSAP((isReducedMotion) => {
 					scrollTrigger: {
 						trigger: $section,
 						start: position === "center" ? "top+=40% bottom" : "top bottom",
-						end: "bottom bottom",
-						markers: true,
-						id: `${position}-${Math.random().toString(16).slice(2, 6)}`,
+						end: position === "center" ? "top+=90% bottom" : "top+=50% bottom",
 						scrub: true,
 						invalidateOnRefresh: true,
 						onRefresh: shouldRotate ? undefined : onRefresh,
