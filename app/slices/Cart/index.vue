@@ -10,7 +10,7 @@ const { items, removeItem, totalPrice } = useCart()
 	<SlideIn
 		id="cart"
 		as="form"
-		class="w-2/5 ml-auto pt-32 pb-16 px-4 rich-text min-h-screen flex flex-col"
+		class="bounded rich-text min-h-screen flex flex-col"
 		method="POST"
 		action="/api/checkout"
 		v-bind="getSceneAttributes({

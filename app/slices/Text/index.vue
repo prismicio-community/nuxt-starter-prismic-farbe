@@ -10,7 +10,7 @@ defineProps(getSliceComponentProps<Content.TextSlice>())
 			position: 'center',
 			model: $prismic.isFilled.contentRelationship(slice.primary.product) ? slice.primary.product.uid : undefined,
 		})"
-		class="ml-auto w-2/5 py-16 px-4 rich-text flex flex-col justify-center"
+		class="bounded rich-text flex flex-col justify-center"
 		:class="{
 			'min-h-[40vh]': slice.variation !== 'fullscreen',
 			'min-h-screen opacity-0': slice.variation === 'fullscreen',

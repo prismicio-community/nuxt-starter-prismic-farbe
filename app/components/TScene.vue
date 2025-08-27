@@ -1,15 +1,35 @@
 <script lang="ts" setup>
 /* eslint-disable vue/attribute-hyphenation */
 import type { Group } from "three"
+import { useWindowSize } from "@vueuse/core"
 import { gsap } from "gsap"
 
 const { totalItems } = useCart()
 const route = useRoute()
+const { width } = useWindowSize()
 
 const activeModel = ref<string>("800")
 const $canister = shallowRef<Group | null>(null)
 const $canisterInternal = shallowRef<Group | null>(null)
 const $packaging = shallowRef<Group | null>(null)
+
+const options = computed(() => {
+	if (width.value >= 1280) {
+		return {
+			x: 0.33,
+			canisterPosition: [1.5, 2.5, 0],
+			packagingPosition: [-1.5, -2.5, 0],
+			scale: 1,
+		} as const
+	}
+
+	return {
+		x: 0.5,
+		canisterPosition: [2.5, 4.5, 0],
+		packagingPosition: [-2.5, -5, 0],
+		scale: 0.75,
+	} as const
+})
 
 useLoop().onBeforeRender(({ elapsed }) => {
 	if ($canisterInternal.value) {
@@ -50,7 +70,7 @@ useGSAP((isReducedMotion) => {
 
 			if (position === "center" || position === "top") {
 				gsap.to([$canisterPosition, $packagingPosition], {
-					y: position === "center" ? 0 : 16,
+					y: position === "center" ? 0 : 24,
 					stagger: 0.05,
 					ease: "power2.inOut",
 					repeatRefresh: true,
@@ -121,8 +141,8 @@ useGSAP((isReducedMotion) => {
 </script>
 
 <template>
-	<TAbsoluteGroup :x="0.33" :distance="20">
-		<TresGroup :position="[1.5, 2.5, 0]">
+	<TAbsoluteGroup :x="options.x" :distance="20">
+		<TresGroup :position="options.canisterPosition" :scale="options.scale">
 			<Levioso>
 				<TresGroup ref="$canister">
 					<TresGroup ref="$canisterInternal">
@@ -134,7 +154,7 @@ useGSAP((isReducedMotion) => {
 				</TresGroup>
 			</Levioso>
 		</TresGroup>
-		<TresGroup :position="[-1.5, -2.5, 0]">
+		<TresGroup :position="options.packagingPosition" :scale="options.scale">
 			<Levioso>
 				<TresGroup ref="$packaging">
 					<TFilmPackaging

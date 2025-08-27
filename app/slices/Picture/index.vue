@@ -10,7 +10,7 @@ defineProps(getSliceComponentProps<Content.PictureSlice>())
 			position: 'top',
 			model: $prismic.isFilled.contentRelationship(slice.primary.product) ? slice.primary.product.uid : undefined,
 		})"
-		class="grid grid-cols-[3fr_2fr]"
+		class="grid xl:grid-cols-[3fr_2fr]"
 	>
 		<figure class="contents">
 			<PrismicImage
@@ -22,8 +22,8 @@ defineProps(getSliceComponentProps<Content.PictureSlice>())
 				as="figcaption"
 				class="px-4 pt-4 pb-16 rich-text"
 				:class="{
-					'self-start': slice.variation === 'default' || slice.variation === 'bottom',
-					'order-last self-end': slice.variation === 'top',
+					'xl:self-start': slice.variation === 'default' || slice.variation === 'bottom',
+					'xl:order-last xl:self-end': slice.variation === 'top',
 				}"
 			>
 				<PrismicRichText :field="slice.primary.caption" />
@@ -33,8 +33,8 @@ defineProps(getSliceComponentProps<Content.PictureSlice>())
 			v-if="$prismic.isFilled.image(slice.primary.secondary_picture)"
 			class="flex flex-col"
 			:class="{
-				'self-end': slice.variation === 'default' || slice.variation === 'bottom',
-				'self-start': slice.variation === 'top',
+				'xl:self-end': slice.variation === 'default' || slice.variation === 'bottom',
+				'xl:self-start': slice.variation === 'top',
 			}"
 		>
 			<PrismicImage
@@ -46,7 +46,7 @@ defineProps(getSliceComponentProps<Content.PictureSlice>())
 				as="figcaption"
 				class="px-4 pt-4 pb-16 rich-text"
 				:class="{
-					'order-first': slice.variation === 'bottom',
+					'xl:order-first': slice.variation === 'bottom',
 				}"
 			>
 				<PrismicRichText :field="slice.primary.secondary_caption" />

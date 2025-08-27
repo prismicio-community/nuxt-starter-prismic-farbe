@@ -14,13 +14,15 @@ const { totalItems } = useCart()
 			<NuxtLink to="/" class="cta py-px ml-4">
 				<BrandSignature class="text-lg" />
 			</NuxtLink>
-			<ul class="w-[calc(40%+2rem)] flex items-center pl-8 pr-4 backdrop-blur">
-				<li v-for="link in settings?.data.navigation" :key="link.key">
+			<ul class="xl:w-[calc(40%+2rem)] flex items-center pl-8 pr-4 backdrop-blur">
+				<li v-for="link in settings?.data.navigation" :key="link.key" class="hidden xl:block">
 					<PrismicLink :field="link" class="cta" />
 				</li>
 				<li class="ml-auto">
 					<NuxtLink to="/#cart" class="cta">
-							Cart (<ClientOnly fallback="~">{{ totalItems }}</ClientOnly>)
+						Cart (<ClientOnly fallback="~">
+							{{ totalItems }}
+						</ClientOnly>)
 					</NuxtLink>
 				</li>
 			</ul>

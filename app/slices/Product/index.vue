@@ -65,7 +65,7 @@ function onSubmit(event: Event) {
 		v-bind="getSceneAttributes({ position: 'center', model: product.uid, rotate: true })"
 		:id="product.uid"
 		as="article"
-		class="ml-auto w-2/5 py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
+		class="bounded rich-text min-h-[150vh] flex flex-col justify-center"
 	>
 		<header class="rich-text">
 			<PrismicRichText :field="product.data?.name" />
@@ -134,7 +134,7 @@ function onSubmit(event: Event) {
 		v-else
 		as="article"
 		v-bind="getSceneAttributes({ position: 'center' })"
-		class="ml-auto w-2/5 py-16 px-4 rich-text min-h-screen flex flex-col justify-center"
+		class="ml-auto w-2/5 py-16 px-4 rich-text min-h-svh flex flex-col justify-center"
 	>
 		<p>Product not found</p>
 	</SlideIn>
