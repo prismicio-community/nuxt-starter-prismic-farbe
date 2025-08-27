@@ -24,7 +24,7 @@ onMounted(() => {
 		<AppHeader :settings="settings" class="fixed top-0 left-0 right-0 z-10" />
 		<slot />
 		<AppFooter :settings="settings" />
-		<TCanvas>
+		<TCanvas class="fixed top-0 left-0 right-0 h-lvh -z-1">
 			<TScene />
 		</TCanvas>
 	</div>

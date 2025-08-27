@@ -63,11 +63,10 @@ function onSubmit(event: Event) {
 	<SlideIn
 		v-if="product"
 		v-bind="getSceneAttributes({ position: 'center', model: product.uid, rotate: true })"
-		:id="product.uid"
 		as="article"
 		class="bounded rich-text min-h-[150vh] flex flex-col justify-center"
 	>
-		<header class="rich-text">
+		<header :id="product.uid" class="rich-text pt-[25vh]">
 			<PrismicRichText :field="product.data?.name" />
 			<p aria-label="Price">
 				{{ formatPrice(product.stripeProduct.price.amount) }} / roll

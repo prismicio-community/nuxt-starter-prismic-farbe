@@ -10,11 +10,10 @@ onMounted(() => {
 
 <template>
 	<figure
-		class="relative -z-1 transition-opacity delay-300 duration-1000 ease-in-out"
+		class="transition-opacity delay-300 duration-1000 ease-in-out"
 		:class="{ 'opacity-0': !mounted }"
 	>
 		<TresCanvas
-			window-size
 			:shadows="true"
 			:output-color-space="SRGBColorSpace"
 			:tone-mapping="ACESFilmicToneMapping"
