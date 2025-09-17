@@ -4,7 +4,6 @@ defineProps<{ model: string }>()
 
 <template>
 	<TModel
-		cast-shadow
 		model="/packaging/packaging.gltf"
 		:map="`/textures/${model}-packaging-min.jpg`"
 		v-bind="$attrs"

@@ -3,5 +3,5 @@ defineProps(getTableComponentProps.td())
 </script>
 
 <template>
-	<dt><slot /></dt>
+	<dd><slot /></dd>
 </template>

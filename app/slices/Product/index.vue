@@ -93,12 +93,7 @@ function onSubmit(event: Event) {
 				}"
 			/>
 		</section>
-		<form
-			action="/api/cart"
-			method="POST"
-			class="mt-16 text-sm max-w-[calc(40ch+1rem)] -ml-4 flex items-start"
-			@submit="onSubmit"
-		>
+		<form class="mt-16 text-sm max-w-[calc(40ch+1rem)] -ml-4 flex items-start" @submit="onSubmit">
 			<div class="flex-1 flex items-center">
 				<button class="cta" type="button" @click="setQuantity(quantity - 1)">
 					-
@@ -133,7 +128,7 @@ function onSubmit(event: Event) {
 		v-else
 		as="article"
 		v-bind="getSceneAttributes({ position: 'center' })"
-		class="ml-auto w-2/5 py-16 px-4 rich-text min-h-svh flex flex-col justify-center"
+		class="bounded rich-text min-h-[150vh] flex flex-col justify-center"
 	>
 		<p>Product not found</p>
 	</SlideIn>
