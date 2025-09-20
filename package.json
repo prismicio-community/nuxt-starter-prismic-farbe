@@ -16,8 +16,8 @@
 	"dependencies": {
 		"@nuxt/fonts": "0.11.4",
 		"@nuxtjs/prismic": "^4.1.0",
-		"@tresjs/cientos": "next",
-		"@tresjs/nuxt": "next",
+		"@tresjs/cientos": "rc",
+		"@tresjs/nuxt": "rc",
 		"@unlok-co/nuxt-stripe": "^5.0.0",
 		"@vueuse/core": "^13.9.0",
 		"gsap": "^3.13.0",
