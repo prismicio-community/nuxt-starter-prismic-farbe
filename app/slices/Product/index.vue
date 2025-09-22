@@ -21,11 +21,7 @@ const product = computed(() => {
 		return undefined
 	}
 
-	const stripeProduct = props.context.stripeProducts[prismicProduct.data.stripe_id]
-
-	if (!stripeProduct) {
-		return undefined
-	}
+	const stripeProduct = props.context.stripeProducts?.[prismicProduct.data.stripe_id]
 
 	return {
 		...prismicProduct,
@@ -43,7 +39,7 @@ function setQuantity(value: number) {
 function onSubmit(event: Event) {
 	event.preventDefault()
 
-	if (!product.value) {
+	if (!product.value?.stripeProduct) {
 		return
 	}
 
@@ -68,7 +64,7 @@ function onSubmit(event: Event) {
 	>
 		<header :id="product.uid" class="rich-text pt-[25vh]">
 			<PrismicRichText :field="product.data?.name" />
-			<p aria-label="Price">
+			<p v-if="product?.stripeProduct" aria-label="Price">
 				{{ formatPrice(product.stripeProduct.price.amount) }} / roll
 			</p>
 		</header>
@@ -93,7 +89,7 @@ function onSubmit(event: Event) {
 				}"
 			/>
 		</section>
-		<form class="mt-16 text-sm max-w-[calc(40ch+1rem)] -ml-4 flex items-start" @submit="onSubmit">
+		<form v-if="product?.stripeProduct" class="mt-16 text-sm max-w-[calc(40ch+1rem)] -ml-4 flex items-start" @submit="onSubmit">
 			<div class="flex-1 flex items-center">
 				<button class="cta" type="button" @click="setQuantity(quantity - 1)">
 					-
@@ -123,6 +119,9 @@ function onSubmit(event: Event) {
 				</ClientOnly>
 			</div>
 		</form>
+		<div v-else class="mt-16 text-sm max-w-[40ch] flex items-start">
+			Missing `NUXT_STRIPE_KEY` environment variable
+		</div>
 	</SlideIn>
 	<SlideIn
 		v-else
