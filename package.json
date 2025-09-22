@@ -3,6 +3,8 @@
 	"type": "module",
 	"private": true,
 	"packageManager": "pnpm@10.16.1",
+	"author": "Prismic <contact@prismic.io> (https://prismic.io)",
+	"license": "Apache-2.0",
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "nuxt dev",
@@ -16,8 +18,8 @@
 	"dependencies": {
 		"@nuxt/fonts": "0.11.4",
 		"@nuxtjs/prismic": "^4.1.0",
-		"@tresjs/cientos": "rc",
-		"@tresjs/nuxt": "rc",
+		"@tresjs/cientos": "5.0.0",
+		"@tresjs/nuxt": "5.0.0",
 		"@unlok-co/nuxt-stripe": "^5.0.0",
 		"@vueuse/core": "^13.9.0",
 		"gsap": "^3.13.0",
@@ -29,11 +31,11 @@
 	},
 	"devDependencies": {
 		"@lihbr/eslint-config": "^0.0.3",
-		"@slicemachine/adapter-nuxt": "^0.3.83",
+		"@slicemachine/adapter-nuxt": "^0.3.84",
 		"@tailwindcss/vite": "^4.1.13",
 		"@types/three": "^0.180.0",
-		"eslint": "^9.35.0",
-		"slice-machine-ui": "^2.18.1",
+		"eslint": "^9.36.0",
+		"slice-machine-ui": "^2.18.2",
 		"typescript": "~5.8.3"
 	}
 }
