@@ -22,8 +22,8 @@ const { items, removeItem, totalPrice } = useCart()
 		<ClientOnly>
 			<template v-if="Object.keys(items).length">
 				<PrismicRichText :field="slice.primary.text" />
-				<ul class="mt-16 max-w-[40ch]">
-					<li v-for="item in items" :key="item.product.id" class="flex items-center">
+				<ul class="!mt-16 max-w-[40ch]">
+					<li v-for="item in items" :key="item.product.id" class="flex items-center !mt-0">
 						<span class="flex-1">
 							{{ item.name }}
 						</span>
