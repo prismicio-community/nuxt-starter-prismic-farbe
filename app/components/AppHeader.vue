@@ -10,11 +10,11 @@ const { totalItems } = useCart()
 
 <template>
 	<header>
-		<nav class="flex justify-between">
+		<nav class="flex justify-between backdrop-blur xl:backdrop-blur-none">
 			<NuxtLink to="/" class="cta py-px ml-4">
 				<BrandSignature class="text-lg" />
 			</NuxtLink>
-			<ul class="xl:w-[calc(40%+2rem)] flex items-center pl-8 pr-4 backdrop-blur">
+			<ul class="xl:w-[calc(40%+2rem)] flex items-center pl-8 pr-4 xl:backdrop-blur">
 				<li v-for="link in settings?.data.navigation" :key="link.key" class="hidden xl:block">
 					<PrismicLink :field="link" class="cta" />
 				</li>
