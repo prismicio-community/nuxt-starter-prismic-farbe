@@ -7,7 +7,7 @@
 - [Learn how to build this website on YouTube][course-youtube]
 - Documentations: [Nuxt](https://nuxt.com), [Prismic](https://prismic.io/docs/nuxt), [TresJS](https://docs.tresjs.org), [GSAP](https://gsap.com/docs/v3), [Stripe](https://docs.stripe.com/api?lang=node), [Tailwind CSS](https://tailwindcss.com/docs/styling-with-utility-classes)
 
-[![Deploy to Vercel](https://vercel.com/button)][nuxthub-deploy]
+[![Deploy to Vercel](https://vercel.com/button)][vercel-deploy]
 
 ## Quick Start
 
