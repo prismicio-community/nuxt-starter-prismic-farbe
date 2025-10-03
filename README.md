@@ -1,4 +1,4 @@
-[![Farbe.film YouTube Thumbnail TODO update + YT link](TODO)][course-youtube]
+[![Farbe.film YouTube Thumbnail](https://images.prismic.io/prismic-main/aN0wJJ5xUNkB1XnE_farbe-course.png?auto=format,compress)][course-youtube]
 
 # Farbe.film - 3D eCommerce website
 
@@ -114,4 +114,4 @@ limitations under the License.
 [live-demo]: https://nuxt-starter-prismic-farbe.vercel.app
 [stackblitz-demo]: https://stackblitz.com/github/prismicio-community/nuxt-starter-prismic-farbe
 [vercel-deploy]: https://vercel.com/new/clone?repository-name=farbe&repository-url=https%3A%2F%2Fgithub.com%2Fprismicio-community%2Fnuxt-starter-prismic-farbe&demo-image=https%3A%2F%2Fimages.prismic.io%2Ffarbe%2FaNF3Sp5xUNkB0-5F_screenshot-fullscreen.jpg&demo-url=https%3A%2F%2Fnuxt-starter-prismic-farbe.vercel.app%2F&demo-title=Nuxt%20Farbe%20%3A%203D%20eCommerce%20Template&demo-description=A%203D%20eCommerce%20website%20template%20powered%20by%20Nuxt%20and%20Prismic.
-[course-youtube]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+[course-youtube]: https://www.youtube.com/watch?v=1ryWEqumhYI
